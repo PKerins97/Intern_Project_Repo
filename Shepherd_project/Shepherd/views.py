@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.http import HttpResponse
 from django.template import loader	
 from .forms import RegisterForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from .models import *
 
 # Create your views here.
 def Shepherd(request):
@@ -34,9 +36,10 @@ def signIn(request):
                 login(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)
+                    return redirect ('home')
                 else:
                     request.session.set_expiry(1209600)
-                return redirect('home')
+            return redirect('home')
 
         return render(request, 'login.html',{'form' : form})
     
