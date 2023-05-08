@@ -3,5 +3,10 @@
 <body>
     <h1>Shepherd </h1>
     <a href = "{% url 'logout' %}"> Logout </a>
-    <p> Welcome {{user.username}}</p>
+    <p> Welcome {% if user.is_authenticated %}
+        {{user.username}}
+        {% else %}
+            Stranger
+        {% endif %}
+    </p>
 </body>
