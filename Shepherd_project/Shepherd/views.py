@@ -4,18 +4,15 @@ from django.http import HttpResponse
 from django.template import loader	
 from .forms import RegisterForm, LoginForm
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout as djlogout
 from .models import *
 
 # Create your views here.
-def Shepherd(request):
-    return HttpResponse("Hello World")
-
 def home(request):
     template = loader.get_template('home.html')
     return HttpResponse(template.render())
 
-def signIn(request):
+def login(request):
 
     if request.user.is_authenticated:
         return redirect('home')
@@ -43,12 +40,12 @@ def signIn(request):
 
         return render(request, 'login.html',{'form' : form})
     
-def sign_out(request):
-    logout(request)
+def logout(request):
+    djlogout(request)
     messages.success(request, f'you have been logged out.')
     return redirect('login')
 
-def sign_up(request):
+def register(request):
     if request.method =='GET':
         form =RegisterForm()
         return render (request, 'register.html', {'form' : form})
