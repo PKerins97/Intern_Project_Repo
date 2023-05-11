@@ -12,6 +12,7 @@ class RegisterForm(UserCreationForm):
             email= self.clean_data["email"]
             if User.objects.filter(email=email).exists():
                 raise ValidationError("A user with this email already exists!")
+            return email
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=65)
