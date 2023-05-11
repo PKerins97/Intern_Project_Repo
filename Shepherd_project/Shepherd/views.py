@@ -1,16 +1,23 @@
-from django.shortcuts import render, redirect
-from django.utils import timezone
-from django.http import HttpResponse
-from django.template import loader	
-from .forms import RegisterForm, LoginForm
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout as djlogout
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as djlogin
+from django.contrib.auth import logout as djlogout
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template import loader
+from django.utils import timezone
+
+from .forms import LoginForm, RegisterForm
 from .models import *
+
 
 # Create your views here.
 def home(request):
-    template = loader.get_template('home.html')
-    return HttpResponse(template.render())
+    template = 'home.html'
+    context = {
+        'user' : request.user,
+    }
+    return render(request, template, context)
 
 def login(request):
 
@@ -30,7 +37,7 @@ def login(request):
             remember_me = form.cleaned_data['remember_me']
             user = authenticate(request, username = username, password = password)
             if user:
-                login(request, user)
+                djlogin(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)
                     return redirect ('home')
@@ -55,7 +62,7 @@ def register(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            login(request, user)
+            djlogin(request, user)
             return redirect ('home')
         else:
             return render(request, 'register.html',{'form' : form })

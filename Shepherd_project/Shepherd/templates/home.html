@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <body>
-    <h1>Shepherd </h1>
+    <h1>Shepherd</h1>
     <a href = "{% url 'logout' %}"> Logout </a>
     <p> Welcome {% if user.is_authenticated %}
         {{user.username}}
