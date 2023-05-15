@@ -17,7 +17,7 @@ def home(request):
     context = {
         'user' : request.user,
     }
-    return render(request, template, context)
+    return  render(request, template, context)
 
 def login(request):
 
@@ -43,7 +43,7 @@ def login(request):
                     return redirect ('home')
                 else:
                     request.session.set_expiry(1209600)
-            return redirect('home')
+            return redirect('login')
 
         return render(request, 'login.html',{'form' : form})
     
