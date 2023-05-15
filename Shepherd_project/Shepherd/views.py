@@ -16,6 +16,7 @@ def home(request):
     template = 'home.html'
     context = {
         'user' : request.user,
+        'mypoints': 10
     }
     return  render(request, template, context)
 
