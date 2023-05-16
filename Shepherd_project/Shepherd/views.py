@@ -16,7 +16,7 @@ def home(request):
     template = 'home.html'
     context = {
         'user' : request.user,
-        'mypoints': 10
+        'mypoints': Points.objects.get(user_id=request.user.id).points
     }
     return  render(request, template, context)
 
