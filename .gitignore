@@ -184,6 +184,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,venv
-Shepherd_project/Shepherd/__pycache__/*.pyc
-Shepherd_project/Shepherd_project/__pycache__/*.pyc
-Shepherd_project/Shepherd/migrations/__pycache__/*.pyc
+Shepherd_project/Shepherd/__pycache__/
+Shepherd_project/Shepherd_project/__pycache__/
+Shepherd_project/Shepherd/migrations/__pycache__/
