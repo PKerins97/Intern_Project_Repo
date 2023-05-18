@@ -1,15 +1,15 @@
-{% load static %}
 <!DOCTYPE html>
+<html lang="en">
+
 <body>
     <h1>Shepherd</h1>
     <a href = "{% url 'logout' %}">Logout</a>
-    {% if user %}
-    <p>
-        Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
-    </p>
-    {% else %}
-    <p>
-        Welcome Stranger.
-    </p>
-    {% endif %}
-</body>
+    
+    <p> Welcome {{user.username}}. You have {{mypoints|default:'no'}} points.</p>
+    <p>Date: {{daily_login.today}}</p> 
+    <p>Rewards Earned: {{daily_login.rewards_earned }}</p>  
+    
+   
+    
+    </body>
+</html>
