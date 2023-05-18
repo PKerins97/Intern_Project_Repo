@@ -7,7 +7,6 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from datetime import date
 
 from .forms import LoginForm, RegisterForm
 from .models import *
@@ -18,7 +17,7 @@ def home(request):
     template = 'home.html'
     context = {
         'user' : request.user,
-        #'mypoints': Points.objects.get(user_id=request.user.id).points
+        'mypoints': Points.objects.get(user_id=request.user.id).points
     }
     return  render(request, template, context)
 
@@ -43,11 +42,12 @@ def login(request):
                 djlogin(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)
+                    return redirect ('home')
                 else:
                     request.session.set_expiry(1209600)
-            return redirect('home')
+            return redirect('login')
 
-        return render(request, 'login.html',{'form' : form, 'user': request.user})#request user passes user to the home page 
+        return render(request, 'login.html',{'form' : form})
     
 def logout(request):
     djlogout(request)
@@ -76,6 +76,9 @@ def UserLoggedIn(request):
         username = None
     return username
 
+from datetime import date
+from .models import DailyLogin
+
 @login_required
 def login_view(request):
     # Check if the user already has a daily login record for today
@@ -88,8 +91,8 @@ def login_view(request):
         daily_login.save()
 
         # Give rewards to the user
-        daily_login.points += 1  # Add a point for each daily login
+        daily_login.points  = ('points')+1  # Adds one point to points as long in bonus 
         daily_login.save()
 
     # Pass the daily login record to the template for display
-    return render(request, 'login.html', {'daily_login': daily_login})
+    return render(request, 'home.html', {'daily_login': daily_login})

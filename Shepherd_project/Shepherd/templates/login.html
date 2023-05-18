@@ -10,9 +10,9 @@
     <form method = "POST" novalidate>
         {% csrf_token %}
         <h2>Login</h2>
-        <a href="{% url 'register' %}">Register</a>
         {{ form.as_p }}
-        <input type="submit" value="Log In"/>
+        <input type="submit" value="login"/>
+        <a href="{% url 'register' %}">Register</a>
     </form>
 </body>
 </html>
