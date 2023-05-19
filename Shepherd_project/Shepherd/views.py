@@ -19,10 +19,19 @@ def home(request):
         'user' : request.user,
         'mypoints': Points.objects.get(user_id=request.user.id).points
     }
+    context = {}
+    if (request.user.is_authenticated):
+        context = {
+            'user' : request.user,
+            'mypoints': Points.objects.get(user_id=request.user.id).points
+            #'daily_login':DailyLogin.objects.get(login_date = request.user.id).login_date,
+            
+        }
+    else:
+        context = { 'user' : request.user }
     return  render(request, template, context)
 
 def login(request):
-
     if request.user.is_authenticated:
         return redirect('home')
     
@@ -32,7 +41,6 @@ def login(request):
     
     elif request.method =='POST':
         form = LoginForm(request.POST)
-
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -46,14 +54,12 @@ def login(request):
                 else:
                     request.session.set_expiry(1209600)
             return redirect('login')
-
         return render(request, 'login.html',{'form' : form})
     
 def logout(request):
     djlogout(request)
     messages.success(request, f'you have been logged out.')
     return redirect('login')
-
 def register(request):
     if request.method =='GET':
         form =RegisterForm()
@@ -63,7 +69,9 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
+            points = Points(user=user, points=0)
             user.save()
+            points.save()
             djlogin(request, user)
             return redirect ('home')
         else:
