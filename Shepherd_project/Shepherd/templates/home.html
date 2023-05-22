@@ -9,9 +9,9 @@
         Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
     </p>
     <p>
-        Last Login: {{ user.last_login }}
+        You Lasted logged in at {{ user.last_login }}
     </p>   
-        Rewards Earned: {{ daily_login.rewards_earned }}
+        Rewards Earned: {{ mypoints}}
     </p>
     {% else %}
     <p>
