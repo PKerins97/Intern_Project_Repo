@@ -15,16 +15,18 @@ from .models import *
 # Create your views here.
 def home(request):
     template = 'home.html'
+    
     context = {
         'user' : request.user,
-        'mypoints': Points.objects.get(user_id=request.user.id).points
+        'mypoints': Points.objects.get(user_id=request.user.id).points,
+        
     }
     context = {}
     if (request.user.is_authenticated):
         context = {
             'user' : request.user,
-            'mypoints': Points.objects.get(user_id=request.user.id).points
-            #'daily_login':DailyLogin.objects.get(login_date = request.user.id).login_date,
+            'mypoints': Points.objects.get(user_id=request.user.id).points,
+            
             
         }
     else:
@@ -88,19 +90,21 @@ from datetime import date
 from .models import DailyLogin
 
 @login_required
-def login_view(request):
-    # Check if the user already has a daily login record for today
-    today = date.today()
-    daily_login = DailyLogin.objects.filter(user=request.user, login_date=today).first()
+def daily_login(request):
+    user = request.user
+    last_login = user.last_login
 
-    if not daily_login:
-        # User hasn't logged in today, create a new daily login record
-        daily_login = DailyLogin(user=request.user, login_date=today)
-        daily_login.save()
+    if last_login and (timezone.now() - last_login).days < 1:
+        # User has already logged in within the last 24 hours
+        message = "You can only login once every 24 hours."
+    else:
+        # Add points to the user's total
+        user.points += 10
+        user.save()
 
-        # Give rewards to the user
-        daily_login.points  = ('points')+1  # Adds one point to points as long in bonus 
-        daily_login.save()
+        # Create a Points object to track the points earned
+        Points.objects.create(user=user, points=10)
 
-    # Pass the daily login record to the template for display
-    return render(request, 'home.html', {'daily_login': daily_login})
+        message = "Congratulations! You earned 10 points."
+
+    return render(request, 'login.html', {'message': message})

@@ -7,7 +7,10 @@
     {% if user.is_authenticated %}
     <p>
         Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
-        Date: {{ daily_login.login_date }}
+    </p>
+    <p>
+        Last Login: {{ user.last_login }}
+    </p>   
         Rewards Earned: {{ daily_login.rewards_earned }}
     </p>
     {% else %}
