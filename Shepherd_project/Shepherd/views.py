@@ -73,7 +73,16 @@ def register(request):
             return redirect ('home')
         else:
             return render(request, 'register.html',{'form' : form })
-        
+   
+def leaderboard(request):
+    template = 'leaderboard.html'
+    context = {
+        'top_users': []
+    }
+    if (request.user.is_authenticated):
+        context['current_user'] = request.user
+    return render(request, template, context)
+         
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
         username= request.user.username
