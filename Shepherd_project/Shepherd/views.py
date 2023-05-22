@@ -14,10 +14,14 @@ from .models import *
 # Create your views here.
 def home(request):
     template = 'home.html'
-    context = {
-        'user' : request.user,
-        'mypoints': Points.objects.get(user_id=request.user.id).points
-    }
+    context = {}
+    if (request.user.is_authenticated):
+        context = {
+            'user' : request.user,
+            'mypoints': Points.objects.get(user_id=request.user.id).points
+        }
+    else:
+        context = { 'user' : request.user }
     return  render(request, template, context)
 
 def login(request):
@@ -62,7 +66,9 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
+            points = Points(user=user, points=0)
             user.save()
+            points.save()
             djlogin(request, user)
             return redirect ('home')
         else:
