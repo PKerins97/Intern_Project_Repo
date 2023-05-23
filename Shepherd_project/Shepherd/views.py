@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.utils import timezone
+import random
 
 from .forms import LoginForm, RegisterForm
 from .models import *
@@ -83,6 +84,19 @@ def leaderboard(request):
         context['current_user'] = request.user
     return render(request, template, context)
          
+def populate(request):
+    random.seed()
+    n = request.GET.get('n','10')
+    n = int(n)
+    template = 'home.html'
+    for i in range(n):
+        id=random.randint(11, 999)
+        user = User(username='robot'+str(id), first_name='John '+str(id), last_name='Doe'+str(id))
+        points = Points(user=user, points = random.randint(0,999))
+        user.save()
+        points.save()
+    return redirect('home')
+    
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
         username= request.user.username
