@@ -1,19 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/stylesheet.css">>
     <title>Login</title>
 </head>
-<body>
-    <form method = "POST" novalidate>
-        {% csrf_token %}
-        <h2>Login</h2>
-        {{ form.as_p }}
-        <input type="submit" value="login"/>
-        <p>Forgot your password? <a href="{%url 'password-reset'%}"> Reset Password</a></p>
-        <p>Don't have an account?<a href="{% url 'register' %}"> Register</a></p>
-    </form>
+<body >
+    <div id = "login_body">
+        <form method = "POST" novalidate>
+            {% csrf_token %}
+            <h2>Login</h2>
+            {{ form.as_p }}
+            <input id = "login_button" type="submit" value="Login"/>
+            <p>Forgot your password? <a  href="{%url 'password-reset'%}"> Reset Password</a></p>
+            <p>Don't have an account?<a  href="{% url 'register' %}"> Register</a></p>
+        </form>
+    </div>
 </body>
 </html>
