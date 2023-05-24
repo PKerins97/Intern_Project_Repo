@@ -3,7 +3,6 @@
 <body>
     <h1>Shepherd</h1>
     <a href = "{% url 'logout' %}">Logout</a>
-    {% if user %}
     {% if user.is_authenticated %}
     <p>
         Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
@@ -17,7 +16,6 @@
     <p>
         Welcome Stranger.
     </p>
-    {% endif %}
     {% endif %}
     
 </body>

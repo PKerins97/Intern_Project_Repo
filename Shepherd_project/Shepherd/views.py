@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.utils import timezone
+import random
 from django.contrib.auth.decorators import login_required
 
 from .forms import LoginForm, RegisterForm
@@ -15,19 +16,13 @@ from .models import *
 # Create your views here.
 def home(request):
     template = 'home.html'
-    
-    context = {
-        'user' : request.user,
-        'mypoints': Points.objects.get(user_id=request.user.id).points,
-        
-    }
     context = {}
     if (request.user.is_authenticated):
         context = {
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
-            'reward_points': Points.objects.get(user_id=request.user.id).points + 1,
-            
+            'reward_points': Points.objects.get(user_id=request.user.id).points + 1
+
         }
     else:
         context = { 'user' : request.user }
@@ -78,7 +73,34 @@ def register(request):
             return redirect ('home')
         else:
             return render(request, 'register.html',{'form' : form })
-        
+   
+def leaderboard(request):
+    template = 'leaderboard.html'
+    topUsers = Points.objects.order_by('-points')
+    context = {
+        'top_pointers': topUsers[:10]
+    }
+    # req = topUsers[:10].select_related('user').get_field('user.username')
+    # print(req.query)
+    this_user_id = topUsers.get(user=request.user)
+    if (request.user.is_authenticated):#and topUsers.contains(this_user)):
+        context['current_user'] = request.user
+        context['mypoints'] = Points.objects.get(user=request.user)
+    return render(request, template, context)
+         
+def populate(request):
+    random.seed()
+    n = request.GET.get('n','10')
+    n = int(n)
+    template = 'home.html'
+    for i in range(n):
+        id=random.randint(11, 999)
+        user = User(username='robot'+str(id), first_name='John '+str(id), last_name='Doe'+str(id))
+        points = Points(user=user, points = random.randint(0,999))
+        user.save()
+        points.save()
+    return redirect('home')
+    
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
         username= request.user.username
