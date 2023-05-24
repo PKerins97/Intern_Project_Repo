@@ -1,19 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
-<form method = 'POST' novalidate>
-    {% csrf_token %}
-    <h2> Sign Up</h2>
-    {% for field in form %}
-    <p>
-        {% if field.errors %}
-        <ul class = "errorlist">
-            {% for error in field.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {{ field.label_tag }}{{ field }}
-    </p>
-    {% endfor %}
-    <a href="{% url 'login' %}"> Login</a>
-    <input type="submit" value="Register"/>
-</form>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="/static/stylesheet.css">
+<title> Register</title>
+<div id = "login_container">
+    <img id = "logo" src = "{% static 'Shepherd_Logo.png' %}">
+        <body>
+            <div id = "login_body">
+                <form method = 'POST' novalidate>
+                {% csrf_token %}
+                 <h2> Sign Up</h2>
+                {% for field in form %}
+                <p>
+                 {% if field.errors %}
+                    <ul class = "errorlist">
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {{ field.label_tag }}{{ field }}
+                 </p>
+                {% endfor %}
+        <a href="{% url 'login' %}"> Login</a>
+        <input id = "login_button" type="submit" value="Register"/>
+    </form>
+    </div>
+</body>

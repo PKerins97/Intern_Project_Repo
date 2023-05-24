@@ -7,9 +7,15 @@
     <p>
         Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
     </p>
+    <p>
+        You Lasted logged in at {{ user.last_login }}
+    </p>   
+        Rewards Earned: {{ reward_points}}
+    </p>
     {% else %}
     <p>
         Welcome Stranger.
     </p>
     {% endif %}
+    
 </body>

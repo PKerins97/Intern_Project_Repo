@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.utils import timezone
 import random
+from django.contrib.auth.decorators import login_required
 
 from .forms import LoginForm, RegisterForm
 from .models import *
@@ -19,14 +20,15 @@ def home(request):
     if (request.user.is_authenticated):
         context = {
             'user' : request.user,
-            'mypoints': Points.objects.get(user_id=request.user.id).points
+            'mypoints': Points.objects.get(user_id=request.user.id).points,
+            'reward_points': Points.objects.get(user_id=request.user.id).points + 1
+
         }
     else:
         context = { 'user' : request.user }
     return  render(request, template, context)
 
 def login(request):
-
     if request.user.is_authenticated:
         return redirect('home')
     
@@ -36,7 +38,6 @@ def login(request):
     
     elif request.method =='POST':
         form = LoginForm(request.POST)
-
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -50,14 +51,12 @@ def login(request):
                 else:
                     request.session.set_expiry(1209600)
             return redirect('login')
-
         return render(request, 'login.html',{'form' : form})
     
 def logout(request):
     djlogout(request)
     messages.success(request, f'you have been logged out.')
     return redirect('login')
-
 def register(request):
     if request.method =='GET':
         form =RegisterForm()
@@ -108,3 +107,26 @@ def UserLoggedIn(request):
     else:
         username = None
     return username
+
+from datetime import date
+from .models import DailyLogin
+
+@login_required
+def daily_login(request):
+    user = request.user
+    last_login = user.last_login
+
+    if last_login and (timezone.now() - last_login).days < 1:
+        # User has already logged in within the last 24 hours
+        message = "You can only login once every 24 hours."
+    else:
+        # Add points to the user's total
+        user.points += 10
+        user.save()
+
+        # Create a Points object to track the points earned
+        Points.objects.create(user=user, points=10)
+
+        message = "Congratulations! You earned 10 points."
+
+    return render(request, 'login.html', {'message': message})
