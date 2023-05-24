@@ -1,0 +1,31 @@
+body{
+    background-color: #004831;
+}
+#login_container{
+    position: absolute;
+    width: 800px;
+    padding-left: 15%;
+    padding-top: 5%;
+}
+#login_body{
+    float:right;
+    font-family:Sans serif;
+    padding:70px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #393432;
+    background-color: #f2f0ed;
+        }
+#login_button{
+    cursor:pointer;
+    background-color: #C4D700;
+    border-radius: 4px;
+    border: 1px solid #f2f0ed;
+        }
+#logo{
+    float:left;
+    width: 300px;
+    height: 300px;
+    padding-top: 5%;
+}
