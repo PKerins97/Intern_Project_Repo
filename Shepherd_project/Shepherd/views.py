@@ -26,7 +26,7 @@ def home(request):
         context = {
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
-            
+            'reward_points': Points.objects.get(user_id=request.user.id).points + 1,
             
         }
     else:
