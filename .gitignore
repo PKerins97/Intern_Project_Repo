@@ -187,3 +187,4 @@ pip-selfcheck.json
 Shepherd_project/Shepherd/__pycache__/
 Shepherd_project/Shepherd_project/__pycache__/
 Shepherd_project/Shepherd/migrations/__pycache__/
+.vscode/
