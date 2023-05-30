@@ -9,7 +9,7 @@ from django.utils import timezone
 import random
 from django.contrib.auth.decorators import login_required
 
-from .forms import LoginForm, RegisterForm
+from .forms import *
 from .models import *
 
 
@@ -100,6 +100,16 @@ def populate(request):
         user.save()
         points.save()
     return redirect('home')
+
+def manualPoints(request):
+    if request.method == 'GET':
+        template = 'manual_points.html'
+        content = {
+            'form': ManualPointsForm()
+        }
+        return render(request, template, content)
+    else:
+        return redirect('home')
     
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
