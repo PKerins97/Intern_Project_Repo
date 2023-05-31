@@ -3,13 +3,14 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as djlogin
 from django.contrib.auth import logout as djlogout
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
 from django.utils import timezone
 import random
+from datetime import date
 from django.contrib.auth.decorators import login_required
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, AddPointForm
 from .models import *
 
 
@@ -45,11 +46,13 @@ def login(request):
             user = authenticate(request, username = username, password = password)
             if user:
                 djlogin(request, user)
-                if not remember_me:
-                    request.session.set_expiry(0)
-                    return redirect ('home')
-                else:
-                    request.session.set_expiry(1209600)
+                
+                # return daily_login(request)
+            if not remember_me:
+                request.session.set_expiry(0)
+                return redirect ('home')
+            else:
+                request.session.set_expiry(1209600)
             return redirect('login')
         return render(request, 'login.html',{'form' : form})
     
@@ -108,25 +111,26 @@ def UserLoggedIn(request):
         username = None
     return username
 
-from datetime import date
-from .models import DailyLogin
+
+#@login_required
+#def daily_login(request):
+ #   user = request.user
+
+    # Add points to the user's total
+  #  user_points = Points.objects.get_or_create(user=user)
+    #user_points += 10
+   # user.save()
+
+    #message = "Congratulations! You earned 10 points."
+
+    #return render(request, 'login.html', {'message': message})
 
 @login_required
-def daily_login(request):
-    user = request.user
-    last_login = user.last_login
-
-    if last_login and (timezone.now() - last_login).days < 1:
-        # User has already logged in within the last 24 hours
-        message = "You can only login once every 24 hours."
-    else:
-        # Add points to the user's total
-        user.points += 10
-        user.save()
-
-        # Create a Points object to track the points earned
-        Points.objects.create(user=user, points=10)
-
-        message = "Congratulations! You earned 10 points."
-
-    return render(request, 'login.html', {'message': message})
+def add_point(request):
+    user_profile = get_object_or_404(Points, user=request.user)
+    
+    if request.method == 'POST':
+        user_profile.points += 5
+        user_profile.save()
+    
+    return render(request, 'add_point.html', {'points': user_profile.points})

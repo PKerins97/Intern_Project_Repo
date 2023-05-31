@@ -19,4 +19,6 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length=65, widget=forms.PasswordInput)
     remember_me = forms.BooleanField(required=False)
 
-
+class AddPointForm(forms.Form):
+    # No fields are necessary since we're not expecting any input
+    pass

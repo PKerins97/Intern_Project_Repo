@@ -3,19 +3,20 @@
 <body>
     <h1>Shepherd</h1>
     <a href = "{% url 'logout' %}">Logout</a>
+    
     {% if user.is_authenticated %}
     <p>
         Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
     </p>
     <p>
         You Lasted logged in at {{ user.last_login }}
-    </p>   
-        Rewards Earned: {{ reward_points}}
     </p>
     {% else %}
     <p>
         Welcome Stranger.
     </p>
     {% endif %}
+    <a href = "{% url 'leaderboard' %}">Leader Board</a><br>
+    <a href = "{% url 'add_point' %}">Daily Reward</a>
     
 </body>

@@ -1,0 +1,5 @@
+<a href = "{% url 'home' %}">Home</a>
+<form action="{% url 'add_point' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Add Point</button>
+  </form>
