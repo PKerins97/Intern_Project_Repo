@@ -109,6 +109,13 @@ def manualPoints(request):
         }
         return render(request, template, content)
     else:
+        form = ManualPointsForm(request.POST)
+        cashBefore = float(form['cost_before'].data)
+        cashAfter = float(form['cost_after'].data)
+        #TODO: decide which points system works
+        p = Points.objects.get(user=request.user)
+        p.points += (cashBefore-cashAfter)*100
+        p.save()
         return redirect('home')
     
 def UserLoggedIn(request):
