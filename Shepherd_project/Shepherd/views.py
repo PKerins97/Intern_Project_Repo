@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
 from django.utils import timezone
 import random
-from datetime import date
+import datetime
 from django.contrib.auth.decorators import login_required
 
 from .forms import LoginForm, RegisterForm, AddPointForm
@@ -111,19 +111,6 @@ def UserLoggedIn(request):
         username = None
     return username
 
-
-#@login_required
-#def daily_login(request):
- #   user = request.user
-
-    # Add points to the user's total
-  #  user_points = Points.objects.get_or_create(user=user)
-    #user_points += 10
-   # user.save()
-
-    #message = "Congratulations! You earned 10 points."
-
-    #return render(request, 'login.html', {'message': message})
 
 @login_required
 def add_point(request):
