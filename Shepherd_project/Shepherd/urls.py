@@ -17,6 +17,7 @@ urlpatterns = [
     path('add-point/', views.add_point, name='add_point'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('populate/', views.populate, name='populate'),
+    path('map/', views.manualPoints, name='manual'),
     path('password-reset/', PasswordResetView.as_view(template_name='registration/password_reset.html'),name='password-reset'),
     path('password-reset/done/', PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'),name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'),name='password_reset_confirm'),

@@ -10,7 +10,7 @@ import random
 import datetime
 from django.contrib.auth.decorators import login_required
 
-from .forms import LoginForm, RegisterForm, AddPointForm
+from .forms import *
 from .models import *
 
 
@@ -103,6 +103,23 @@ def populate(request):
         user.save()
         points.save()
     return redirect('home')
+
+def manualPoints(request):
+    if request.method == 'GET':
+        template = 'manual_points.html'
+        content = {
+            'form': ManualPointsForm()
+        }
+        return render(request, template, content)
+    else:
+        form = ManualPointsForm(request.POST)
+        cashBefore = float(form['cost_before'].data)
+        cashAfter = float(form['cost_after'].data)
+        #TODO: decide which points system works
+        p = Points.objects.get(user=request.user)
+        p.points += (cashBefore-cashAfter)*100
+        p.save()
+        return redirect('home')
     
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:

@@ -19,6 +19,6 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length=65, widget=forms.PasswordInput)
     remember_me = forms.BooleanField(required=False)
 
-class AddPointForm(forms.Form):
-    # No fields are necessary since we're not expecting any input
-    pass
+class ManualPointsForm(forms.Form):
+    cost_before = forms.DecimalField(decimal_places=2, min_value=0, required=True)
+    cost_after = forms.DecimalField(decimal_places=2, required=True)
