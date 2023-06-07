@@ -1,4 +1,4 @@
-body{
+#login_background{
     background-color: #004831;
 }
 #login_container{
@@ -28,4 +28,4 @@ body{
     width: 300px;
     height: 300px;
     padding-top: 5%;
-}
+} 

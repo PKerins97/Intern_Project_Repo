@@ -1,13 +1,28 @@
 {% load static %}
 <!DOCTYPE html>
+<head>
+<style>
+    a:link, a:visited {
+      color: black;
+      padding: 14px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    a:hover, a:active {
+      background-color: #C4D700;
+    }
+  </style>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"  href="/static/stylesheet.css">
+</head>
 <title> Register</title>
 <div id = "login_container">
     <img id = "logo" src = "{% static 'Shepherd_Logo.png' %}">
-        <body>
+        <body id = "login_background">
             <div id = "login_body">
                 <form method = 'POST' novalidate>
                 {% csrf_token %}
