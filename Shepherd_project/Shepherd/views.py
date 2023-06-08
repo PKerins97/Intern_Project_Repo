@@ -22,9 +22,7 @@ def home(request):
         context = {
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
-            'reward_points': Points.objects.get(user_id=request.user.id).points + 1
-
-        }
+       }
     else:
         context = { 'user' : request.user }
     return  render(request, template, context)
@@ -134,7 +132,9 @@ def add_point(request):
     user_profile = get_object_or_404(Points, user=request.user)
     
     if request.method == 'POST':
-        user_profile.points += 5
-        user_profile.save()
-    
-    return render(request, 'add_point.html', {'points': user_profile.points})
+        if (request.user.is_authenticated):
+            user_profile.points += 5
+            user_profile.save() 
+    else: 
+        return ('home.html',{'points': user_profile.points} )
+    return render(request, 'home.html',{'points': user_profile.points})
