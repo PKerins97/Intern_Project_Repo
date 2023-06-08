@@ -27,7 +27,7 @@
     <table>
         <header>Top savers</header>
         <tbody>
-            {% for user in top_pointers %}
+            {% for user in champs %}
             <tr>
                 <td>{{user.user.username}}</td>
                 <td>{{user.user.first_name}}</td>
@@ -59,13 +59,13 @@
             <div class="col-sm-4">
                 <div class="leaderboard-card">
                     <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,051</h3>
+                        <h3 class="text-center">${{ champs.1.points }}</h3>
                     </div>
                     <div class="leaderboard-card__body">
                         <div class="text-center">
                             <img src="/static/img/user2.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">Sandeep Sandy</h5>
-                            <p class="text-muted mb-0">@sandeep</p>
+                            <h5 class="mb-0">{{ champs.1.user.last_name }} {{ champs.1.user.first_name}}</h5>
+                            <p class="text-muted mb-0">@{{ champs.1.user.username }}</p>
                             <hr>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span><i class="fa fa-map-marker"></i> Bangalore</span>
@@ -78,13 +78,13 @@
             <div class="col-sm-4">
                 <div class="leaderboard-card leaderboard-card--first">
                     <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,254</h3>
+                        <h3 class="text-center">${{ champs.0.points }}</h3>
                     </div>
                     <div class="leaderboard-card__body">
                         <div class="text-center">
                             <img src="/static/img/user1.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">Kiran Acharya</h5>
-                            <p class="text-muted mb-0">@kiranacharyaa</p>
+                            <h5 class="mb-0">{{ champs.0.user.first_name}} {{ champs.0.user.last_name }}</h5>
+                            <p class="text-muted mb-0">@{{ champs.0.user.username }}</p>
                             <hr>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span><i class="fa fa-map-marker"></i> Bangalore</span>
@@ -97,13 +97,13 @@
             <div class="col-sm-4">
                 <div class="leaderboard-card">
                     <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,012</h3>
+                        <h3 class="text-center">${{ champs.2.points }}</h3>
                     </div>
                     <div class="leaderboard-card__body">
                         <div class="text-center">
                             <img src="/static/img/user3.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">John doe</h5>
-                            <p class="text-muted mb-0">@johndoe</p>
+                            <h5 class="mb-0">{{ champs.2.user.first_name}} {{ champs.2.user.last_name }}</h5>
+                            <p class="text-muted mb-0">@{{ champs.2.user.username }}</p>
                             <hr>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span><i class="fa fa-map-marker"></i> Bangalore</span>
@@ -123,34 +123,36 @@
                 <tr>
                     <th>User</th>
                     <th>Status</th>
-                    <th>Location</th>
+                    <!-- <th>Location</th> -->
                     <th>Email</th>
                     <th>Congratulate</th>
                 </tr>
             </thead>
             <tbody>
+                {% for user in champs %}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
                             <img src="/static/img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
                             <div class="user-info__basic">
-                                <h5 class="mb-0">Kiran Acharya</h5>
-                                <p class="text-muted mb-0">@kiranacharyaa</p>
+                                <h5 class="mb-0">{{ user.user.first_name}} {{ user.user.last_name }}</h5>
+                                <p class="text-muted mb-0">@{{ user.user.username }}</p>
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$1,253</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
+                            <h4 class="mr-1">${{ user.points }}</h4>
+                            <!-- <small class="text-success"><i class="fa fa-arrow-up"></i>5%</small> -->
                         </div>
                     </td>
-                    <td>Bangalore</td>
-                    <td>kiran@kiranmail.com</td>
+                    <!-- <td>Bangalore</td> -->
+                    <td>{{ user.user.username }}@fakemail.com</td>
                     <td>
                         <button class="btn btn-success btn-sm">Congratulate</button>
                     </td>
                 </tr>
+                {% endfor %}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">

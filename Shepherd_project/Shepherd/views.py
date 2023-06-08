@@ -81,12 +81,10 @@ def leaderboard(request):
     template = 'leaderboard.html'
     topUsers = Points.objects.order_by('-points')
     context = {
-        'top_pointers': topUsers[:10]
+        'champs': topUsers[:10]
     }
-    # req = topUsers[:10].select_related('user').get_field('user.username')
-    # print(req.query)
     this_user_id = topUsers.get(user=request.user)
-    if (request.user.is_authenticated):#and topUsers.contains(this_user)):
+    if (request.user.is_authenticated):
         context['current_user'] = request.user
         context['mypoints'] = Points.objects.get(user=request.user)
     return render(request, template, context)
