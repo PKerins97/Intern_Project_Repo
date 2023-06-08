@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,246 +7,288 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Top savers</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <script type="text/javascript"
-        src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=DspLJw3jvBhYOxsrJs7SYZbGWnzO8xFgORD8j_vwC-s0w-4_-BWpfmzNkhLxSESazYKGlyr5lX2CWkvcMasxiq7iP6ySyybnYV5vB_W7BHoAgnQBF5-Iqsf08W6NklN0xg4wgBuVqwF6DF-_tlfDhA"
-        charset="UTF-8"></script>
-    <link rel="stylesheet" crossorigin="anonymous"
-        href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9raXJhbndvcmtzcGFjZS5jb20vZGVtby9wcm9qZWN0cy9jb2RlLXNuaXBwZXRzL2Rhc2hib2FyZC1jb21wL3RvcC1nYWluZXJzLWxlYWRlcmJvYXJkLw" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/homestylesheet.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
-    <a href = "{% url 'home' %}">Home</a>
-    <style>
-        table tr {
-            border: 2px;
-            border-color: black;
-        }
-    </style>
-    <table>
-        <header>Top savers</header>
-        <tbody>
-            {% for user in top_pointers %}
-            <tr>
-                <td>{{user.user.username}}</td>
-                <td>{{user.user.first_name}}</td>
-                <td>{{user.user.last_name}}</td>
-                <td>{{user.points}}</td>
-            </tr>
-            {% endfor %}
-            {% if current_user %}
-            <tr>
-                <td>...</td>
-            </tr>
-            <tr>
-                <td>{{current_user.username}}</td>
-                <td>{{current_user.first_name}}</td>
-                <td>{{current_user.last_name}}</td>
-                <td>{{mypoints.points}}</td>
-            </tr>
-            {% endif %}
-        </tbody>
-    </table>
-</body>
-<section class="main-content">
-    <div class="container">
-        <h1>Top Gainers</h1>
-        <br>
-        <br>
+    <!--Main Navigation-->
+    <header>
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
+                    </a>
+                    <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple"
+                        aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
+                    </a>
+                    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
 
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="leaderboard-card">
-                    <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,051</h3>
+        <!-- Navbar -->
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Brand -->
+                <a class="navbar-brand" href="#">
+                    <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
+                </a>
+                <!-- Search form -->
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <input autocomplete="off" type="search" class="form-control rounded"
+                        placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px;" />
+                    <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+                </form>
+
+                <!-- Right links -->
+                <ul class="navbar-nav ms-auto d-flex flex-row">
+                    <!-- Notification dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">Some news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Icon -->
+                    <li class="nav-item">
+                        <a class="nav-link me-3 me-lg-0" href="#">
+                            <i class="fas fa-fill-drip"></i>
+                        </a>
+                    </li>
+                    <!-- Icon -->
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link" href="#">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+
+                    <!-- Icon dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown"
+                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="flag-united-kingdom flag m-0"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English
+                                    <i class="fa fa-check text-success ms-2"></i></a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                                height="22" alt="Avatar" loading="lazy" />
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- End of Navbar -->
+    </header>
+    <!-- End of Main Navigation-->
+
+    <!--Main layout-->
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            <h1>Top Gainers</h1>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="leaderboard-card">
+                        <div class="leaderboard-card__top">
+                            <h3 class="text-center">${{ champs.1.points }}</h3>
+                        </div>
+                        <div class="leaderboard-card__body">
+                            <div class="text-center">
+                                <img src="/static/img/user2.jpg" class="circle-img mb-2" alt="User Img">
+                                <h5 class="mb-0">{{ champs.1.user.last_name }} {{ champs.1.user.first_name}}
+                                </h5>
+                                <p class="text-muted mb-0">@{{ champs.1.user.username }}</p>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <button class="btn btn-outline-success btn-sm">Congratulate</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="leaderboard-card__body">
-                        <div class="text-center">
-                            <img src="/static/img/user2.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">Sandeep Sandy</h5>
-                            <p class="text-muted mb-0">@sandeep</p>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span><i class="fa fa-map-marker"></i> Bangalore</span>
-                                <button class="btn btn-outline-success btn-sm">Congratulate</button>
+                </div>
+                <div class="col-sm-4">
+                    <div class="leaderboard-card leaderboard-card--first">
+                        <div class="leaderboard-card__top">
+                            <h3 class="text-center">${{ champs.0.points }}</h3>
+                        </div>
+                        <div class="leaderboard-card__body">
+                            <div class="text-center">
+                                <img src="/static/img/user1.jpg" class="circle-img mb-2" alt="User Img">
+                                <h5 class="mb-0">{{ champs.0.user.first_name}} {{ champs.0.user.last_name }}
+                                </h5>
+                                <p class="text-muted mb-0">@{{ champs.0.user.username }}</p>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <button class="btn btn-outline-success btn-sm">Congratulate</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="leaderboard-card">
+                        <div class="leaderboard-card__top">
+                            <h3 class="text-center">${{ champs.2.points }}</h3>
+                        </div>
+                        <div class="leaderboard-card__body">
+                            <div class="text-center">
+                                <img src="/static/img/user3.jpg" class="circle-img mb-2" alt="User Img">
+                                <h5 class="mb-0">{{ champs.2.user.first_name}} {{ champs.2.user.last_name }}
+                                </h5>
+                                <p class="text-muted mb-0">@{{ champs.2.user.username }}</p>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <button class="btn btn-outline-success btn-sm">Congratulate</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="leaderboard-card leaderboard-card--first">
-                    <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,254</h3>
-                    </div>
-                    <div class="leaderboard-card__body">
-                        <div class="text-center">
-                            <img src="/static/img/user1.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">Kiran Acharya</h5>
-                            <p class="text-muted mb-0">@kiranacharyaa</p>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span><i class="fa fa-map-marker"></i> Bangalore</span>
-                                <button class="btn btn-outline-success btn-sm">Congratulate</button>
+
+
+            <h4>All Users</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Status</th>
+                        <!-- <th>Location</th> -->
+                        <th>Email</th>
+                        <th>Congratulate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in champs %}
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/static/img/user1.jpg" class="circle-img circle-img--small mr-2"
+                                    alt="User Img">
+                                <div class="user-info__basic">
+                                    <h5 class="mb-0">{{ user.user.first_name}} {{ user.user.last_name }}</h5>
+                                    <p class="text-muted mb-0">@{{ user.user.username }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="leaderboard-card">
-                    <div class="leaderboard-card__top">
-                        <h3 class="text-center">$1,012</h3>
-                    </div>
-                    <div class="leaderboard-card__body">
-                        <div class="text-center">
-                            <img src="/static/img/user3.jpg" class="circle-img mb-2" alt="User Img">
-                            <h5 class="mb-0">John doe</h5>
-                            <p class="text-muted mb-0">@johndoe</p>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span><i class="fa fa-map-marker"></i> Bangalore</span>
-                                <button class="btn btn-outline-success btn-sm">Congratulate</button>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-baseline">
+                                <h4 class="mr-1">${{ user.points }}</h4>
+                                <!-- <small class="text-success"><i class="fa fa-arrow-up"></i>5%</small> -->
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </td>
+                        <!-- <td>Bangalore</td> -->
+                        <td>{{ user.user.username }}@fakemail.com</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Congratulate</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-
-        <h4>All Users</h4>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>Location</th>
-                    <th>Email</th>
-                    <th>Congratulate</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="/static/img/user1.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                            <div class="user-info__basic">
-                                <h5 class="mb-0">Kiran Acharya</h5>
-                                <p class="text-muted mb-0">@kiranacharyaa</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$1,253</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
-                        </div>
-                    </td>
-                    <td>Bangalore</td>
-                    <td>kiran@kiranmail.com</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">Congratulate</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="/static/img/user2.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                            <div class="user-info__basic">
-                                <h5 class="mb-0">Sandeep Sandy</h5>
-                                <p class="text-muted mb-0">@sandeep</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$1,051</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
-                        </div>
-                    </td>
-                    <td>Bangalore</td>
-                    <td>sandeep@sandeepmail.com</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">Congratulate</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="/static/img/user3.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                            <div class="user-info__basic">
-                                <h5 class="mb-0">John Doe</h5>
-                                <p class="text-muted mb-0">@johndoe</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$1,012</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
-                        </div>
-                    </td>
-                    <td>Bangalore</td>
-                    <td>kiran@kiranmail.com</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">Congratulate</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="/static/img/user4.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                            <div class="user-info__basic">
-                                <h5 class="mb-0">John Noakes</h5>
-                                <p class="text-muted mb-0">@johnnoakes</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$986</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
-                        </div>
-                    </td>
-                    <td>Bangalore</td>
-                    <td>kiran@kiranmail.com</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">Congratulate</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="/static/img/user5.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-                            <div class="user-info__basic">
-                                <h5 class="mb-0">Tom harry</h5>
-                                <p class="text-muted mb-0">@tomharry</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-baseline">
-                            <h4 class="mr-1">$951</h4><small class="text-success"><i
-                                    class="fa fa-arrow-up"></i>5%</small>
-                        </div>
-                    </td>
-                    <td>Bangalore</td>
-                    <td>kiran@kiranmail.com</td>
-                    <td>
-                        <button class="btn btn-success btn-sm">Congratulate</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </main>
+    <!--End of Main layout-->
+</body>
 
 </html>
