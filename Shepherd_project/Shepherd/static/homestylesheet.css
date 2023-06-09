@@ -1,5 +1,11 @@
+html{
+  max-width:100%;
+  overflow-x: hidden;
+}
 body {
     background-color: #fbfbfb;
+    max-width:100%;
+    overflow-x: hidden;
   }
   @media (min-width: 991.98px) {
     main {
@@ -37,3 +43,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
+
+.carousel_container{
+  width:80%;
+}
