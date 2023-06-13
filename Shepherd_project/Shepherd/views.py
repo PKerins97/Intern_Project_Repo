@@ -126,13 +126,16 @@ def UserLoggedIn(request):
 
 
 @login_required
-def add_point(request):
+def add_points(request):
     user_profile = get_object_or_404(Points, user=request.user)
-    
-    if request.method == 'POST':
-        if (request.user.is_authenticated):
-            user_profile.points += 5
-            user_profile.save() 
-    else: 
-        return ('home.html',{'points': user_profile.points} )
-    return render(request, 'home.html',{'points': user_profile.points})
+    template = 'home.html'
+    user_profile.points += 5
+    user_profile.save() 
+    context = {}
+    if (request.user.is_authenticated):
+        context = {
+            'mypoints': user_profile.points
+       }
+    else:
+        context = { 'user' : request.user }
+    return  render(request, template, context)
