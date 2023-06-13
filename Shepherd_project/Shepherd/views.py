@@ -126,11 +126,24 @@ def UserLoggedIn(request):
 
 
 @login_required
+@login_required
 def add_points(request):
     user_profile = get_object_or_404(Points, user=request.user)
     template = 'home.html'
+    last_action_time = user_profile.last_action_time
+    current_time = timezone.now()
+    if last_action_time is not None:
+        time_difference = current_time - last_action_time
+        error_message = "You can only add points once a day."
+        context = {
+                'error_message': error_message,
+                'mypoints': user_profile.points
+            }
+        return render(request, template, context)
+    
     user_profile.points += 5
-    user_profile.save() 
+    user_profile.last_action_time = current_time
+    user_profile.save()
     context = {}
     if (request.user.is_authenticated):
         context = {

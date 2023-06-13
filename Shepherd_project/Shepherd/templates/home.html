@@ -195,6 +195,9 @@
       </p>
       {% endif %}
 
+      {% if error_message %}
+          <div class="error">{{ error_message }}</div>
+      {% endif %}
     </div>
     <div class="container">
       <!-- Trigger the modal with a button -->
