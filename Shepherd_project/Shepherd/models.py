@@ -7,6 +7,7 @@ class Points(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     points = models.IntegerField()
     date_added = models.DateTimeField(default=timezone.now)
+    last_action_time = models.DateTimeField(null=True,blank=True)
 
 class DailyLogin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
