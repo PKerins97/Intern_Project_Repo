@@ -9,6 +9,7 @@ from django.utils import timezone
 import random
 import datetime
 from django.contrib.auth.decorators import login_required
+from mindee import Client, documents
 
 from .forms import *
 from .models import *
@@ -117,6 +118,38 @@ def manualPoints(request):
         p.save()
         return redirect('home')
     
+def mindeeOCR(request):
+    
+    if request.method == 'GET':
+        template = 'mindee_ocr.html'
+        context = {
+            'form': FileEntryForm()
+        }
+        return render(request, template, context)
+    else:
+        form = request.POST.get('file', '')
+        print(form)
+        form = FileEntryForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(request.FILES["file"])
+            return redirect('home')
+        return redirect('leaderboard')
+        # Init a new client
+        # mindee_client = Client(api_key="229a21e30a51c7788f34d3b729a7775c")
+
+        # Load a file from disk
+        # input_doc = mindee_client.doc_from_path("/path/to/the/file.ext")
+
+        # Parse the document as an invoice by passing the appropriate type
+        # api_response = input_doc.parse(documents.TypeReceiptV5)
+
+        # Print a brief summary of the parsed data
+        # f = File('log.txt')
+        # print(api_response.document)
+        # print(api_response.document, file=f)
+        # template = ''
+
+
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
         username= request.user.username
@@ -124,8 +157,6 @@ def UserLoggedIn(request):
         username = None
     return username
 
-
-@login_required
 @login_required
 def add_points(request):
     user_profile = get_object_or_404(Points, user=request.user)
