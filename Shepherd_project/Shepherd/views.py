@@ -141,7 +141,7 @@ def add_points(request):
             }
         return render(request, template, context)
     
-    user_profile.points += 5
+    user_profile.points += 10
     user_profile.last_action_time = current_time
     user_profile.save()
     context = {}
