@@ -22,3 +22,6 @@ class LoginForm(forms.Form):
 class ManualPointsForm(forms.Form):
     cost_before = forms.DecimalField(decimal_places=2, min_value=0, required=True)
     cost_after = forms.DecimalField(decimal_places=2, required=True)
+
+class FileEntryForm(forms.Form):
+    file = forms.FileField(allow_empty_file=False, required=True)
