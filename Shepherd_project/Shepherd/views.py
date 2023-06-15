@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from mindee import Client, documents
 
 from .forms import *
+from .forms import FileEntryForm
 from .models import *
 
 
