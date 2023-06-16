@@ -10,6 +10,9 @@ import random
 import datetime
 from django.contrib.auth.decorators import login_required
 from mindee import Client, documents
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+#import pandas as pd
 
 from .forms import *
 from .forms import FileEntryForm
@@ -184,3 +187,7 @@ def add_points(request):
     else:
         context = { 'user' : request.user }
     return  render(request, template, context)
+
+#driver = webdriver.Chrome('C:\Users\Paulk\Downloads\chromedriver')
+#driver.get('https://www.tesco.ie/groceries/en-IE/promotions')
+#offers = driver.find_elements_by_xpath('//*[@id="carouselWrapper"]/div[2]/div[2]/div[2]/div[1]/div/div[2]/div/ul/li[3]/div/div/div')
