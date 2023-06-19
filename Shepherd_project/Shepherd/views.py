@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from mindee import Client, documents
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-#import pandas as pd
+
 
 from .forms import *
 from .forms import FileEntryForm
