@@ -50,7 +50,13 @@ body {
 
 .alert {
   padding: 20px;
+  width:80%;
+}
+
+.alert {
+  padding: 20px;
   background-color: #f44336;
+  color: white;
 }
 
 .closebtn {
@@ -66,5 +72,4 @@ body {
 
 .closebtn:hover {
   color: black;
-  cursor: pointer;
 }

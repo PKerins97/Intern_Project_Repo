@@ -15,8 +15,8 @@ class RegisterForm(UserCreationForm):
             return email
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=65)
-    password = forms.CharField(max_length=65, widget=forms.PasswordInput)
+    username = forms.CharField(max_length=65, required=True)
+    password = forms.CharField(max_length=65, widget=forms.PasswordInput, required=True)
     remember_me = forms.BooleanField(required=False)
 
 class ManualPointsForm(forms.Form):
