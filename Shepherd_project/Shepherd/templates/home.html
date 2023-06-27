@@ -68,13 +68,13 @@
         </button>
 
         <!-- Brand -->
-        <a href="{% url 'home' %}" class="navbar-brand" >
+        <a href="{% url 'home' %}" class="navbar-brand">
           <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
         </a>
         <!-- Search form -->
         <form class="d-none d-md-flex input-group w-auto my-auto">
-          <input autocomplete="off" type="search" class="form-control rounded"
-            placeholder='Search' style="min-width: 225px;" />
+          <input autocomplete="off" type="search" class="form-control rounded" placeholder='Search'
+            style="min-width: 225px;" />
           <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
         </form>
 
@@ -190,7 +190,7 @@
       </p>
       <p>
         You Lasted logged in at {{ user.last_login }}
-      {% else %}
+        {% else %}
       <p>
         Welcome Stranger.
       </p>
@@ -203,16 +203,50 @@
         <strong>{{ error_message }}</strong> 
       </div>-->
       <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <strong>{{ error_message }}</strong>
       </div>
       {% endif %}
     </div>
+
+    <div class="container">
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit
+        Shopping</button>
+
+      <!-- Modal for daily reward -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <form action="{% url 'manual' %}" method="post">
+              {% csrf_token %}
+              <div class="modal-header">
+                <h4 class="modal-title">Add points manually</h4>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+              </div>
+              <div class="modal-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+              </div>
+              <div class="hidden" id="cost_before">{{form.cost_before.value}}</div>
+              <div class="hidden" id="cost_after">{{form.cost_after.value}}</div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" action="{% url 'manual' %}" id="getPointsButton">Get points</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <!-- Trigger the modal with a button -->
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button>
     
-      <!-- Modal -->
+      <!-- Modal for daily reward -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
         
@@ -220,66 +254,69 @@
           <div class="modal-content">
             <form action="{% url 'add_point' %}" method="post">
               {% csrf_token %}
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Login Reward</h4>
-            </div>
-            <div class="modal-body">
-              <p>Claim your Reward </p>             
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-default" action="{% url 'add_point' %}" >Claim Reward</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </form>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login Reward</h4>
+              </div>
+              <div class="modal-body">
+                <p>Claim your Reward </p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" action="{% url 'add_point' %}">Claim Reward</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </form>
           </div>
-          
+
         </div>
       </div>
-      
+
     </div>
+
+    <!-- Carousel -->
     <div class="carousel_container">
       <h2>Carousel Example</h2>
-      <div id="myCarousel" class="carousel slide" data-ride="carousel" style = "width:80%; overflow-x:hidden;">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:80%; overflow-x:hidden;">
         <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
-    
+
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-    
+
           <div class="item active">
-            <img  src="/static/Shepherd_Logo.png" 
-              alt="" style="width:20%;">
+            <img src="/static/Shepherd_Logo.png" alt="" style="width:20%;">
             <div class="carousel-caption">
               <h3>Deal 1</h3>
               <p></p>
             </div>
           </div>
-    
+
           <div class="item">
-            <img src="https://storage.googleapis.com/images-dun-prd-85c8a53.dun.prd.v8.commerce.mi9cloud.com/product-images/cell/100152379_596.jpg" 
-                alt="" style="width:20%;">
+            <img
+              src="https://storage.googleapis.com/images-dun-prd-85c8a53.dun.prd.v8.commerce.mi9cloud.com/product-images/cell/100152379_596.jpg"
+              alt="" style="width:20%;">
             <div class="carousel-caption">
               <h3>Deal 2</h3>
               <p></p>
             </div>
           </div>
-        
+
           <div class="item">
-            <img src= "https://digitalcontent.api.tesco.com/v2/media/ghs/5918e54e-bb24-4c31-a577-edbde6068914/0b1a372b-51dc-4d80-be64-011c2f5fe545_1300513662.jpeg?h=540&w=540" 
-                alt="New York" style="width:20%;">
+            <img
+              src="https://digitalcontent.api.tesco.com/v2/media/ghs/5918e54e-bb24-4c31-a577-edbde6068914/0b1a372b-51dc-4d80-be64-011c2f5fe545_1300513662.jpeg?h=540&w=540"
+              alt="New York" style="width:20%;">
             <div class="carousel-caption">
               <h3>Deal 3</h3>
               <p></p>
             </div>
           </div>
-      
+
         </div>
-    
+
         <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left"></span>
@@ -294,3 +331,15 @@
   </main>
   <!--End of Main layout-->
 </body>
+<script defer>
+  function changeText(){
+    var before = "{{form.cost_before.value}}";
+    var after = "{{form.cost_after.value}}";
+
+    alert(before);
+    let point = (after-before)*100
+    if (point != NaN) {
+      document.getElementById("getPointsButton").textContent = "Get "+ point +" points";
+    }
+  }
+</script>
