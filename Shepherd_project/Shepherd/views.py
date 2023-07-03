@@ -9,9 +9,7 @@ from django.utils import timezone
 import random
 import datetime
 from django.contrib.auth.decorators import login_required
-from mindee import Client, documents
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from django.contrib.auth.tokens import default_token_generator
 
 
 from .forms import *
@@ -63,6 +61,7 @@ def logout(request):
     djlogout(request)
     messages.success(request, f'you have been logged out.')
     return redirect('login')
+
 def register(request):
     if request.method =='GET':
         form =RegisterForm()

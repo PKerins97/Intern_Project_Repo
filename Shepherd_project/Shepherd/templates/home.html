@@ -33,7 +33,7 @@
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+          <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
           </a>
           <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
@@ -42,6 +42,8 @@
           <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
             <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
           </a>
+          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
               class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
           <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -80,7 +82,7 @@
 
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row">
-          <!-- Notification dropdown -->
+          <!-- Notification dropdown 
           <li class="nav-item dropdown">
             <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
               role="button" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -99,7 +101,7 @@
               </li>
             </ul>
           </li>
-
+          -->
           <!-- Icon -->
           <li class="nav-item">
             <a class="nav-link me-3 me-lg-0" href="#">
@@ -113,7 +115,7 @@
             </a>
           </li>
 
-          <!-- Icon dropdown -->
+          <!-- Icon dropdown 
           <li class="nav-item dropdown">
             <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown" role="button"
               data-mdb-toggle="dropdown" aria-expanded="false">
@@ -153,7 +155,7 @@
               </li>
             </ul>
           </li>
-
+          -->
           <!-- Avatar -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
