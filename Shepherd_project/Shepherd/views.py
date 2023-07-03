@@ -200,3 +200,11 @@ def add_points(request):
 #driver = webdriver.Chrome('C:\Users\Paulk\Downloads\chromedriver')
 #driver.get('https://www.tesco.ie/groceries/en-IE/promotions')
 #offers = driver.find_elements_by_xpath('//*[@id="carouselWrapper"]/div[2]/div[2]/div[2]/div[1]/div/div[2]/div/ul/li[3]/div/div/div')
+
+def congratulate(request):
+    request
+    
+    return redirect('home')
+
+def connect(request):
+    pass

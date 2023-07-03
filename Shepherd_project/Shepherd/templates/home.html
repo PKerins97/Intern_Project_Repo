@@ -131,25 +131,7 @@
                 <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-              </li>
-              <li>
                 <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
               </li>
             </ul>
           </li>
@@ -207,6 +189,18 @@
         <strong>{{ error_message }}</strong>
       </div>
       {% endif %}
+    </div>
+
+    <div th:if="${check_message} != null">
+      <div class="toast show position-absolute" style="right: 0;">
+        <div class="toast-header d-flex align-items-center">
+          <div class="mx-auto">You have a message</div>
+          <button type="button" class="btn-close m ml-auto closeToast" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+          <p>User sends his regards</p>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -342,7 +336,7 @@
               <a href="#!">
                 <div class="mask">
                   <div class="d-flex justify-content-start align-items-end h-100">
-                    <h5><span class="badge bg-primary ms-2" style = "background-color = yellow;">Clubcard Price
+                    <h5><span class="badge bg-primary ms-2" style = "background-color: yellow;">Clubcard Price
                       Any 3 for €4 Clubcard Price</span></h5>
                   </div>
                 </div>

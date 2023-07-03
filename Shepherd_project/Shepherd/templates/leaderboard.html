@@ -253,9 +253,8 @@
                 <thead>
                     <tr>
                         <th>User</th>
+                        <th>Points</th>
                         <th>Status</th>
-                        <!-- <th>Location</th> -->
-                        <th>Email</th>
                         <th>Congratulate</th>
                     </tr>
                 </thead>
@@ -279,9 +278,11 @@
                             </div>
                         </td>
                         <!-- <td>Bangalore</td> -->
-                        <td>{{user.user.email}}</td>
                         <td>
-                            <button class="btn btn-success btn-sm">Congratulate</button>
+                            <a href="connect/{{ user.user }}"><button class="btn btn-primary btn-sm">Connect</button></a>
+                        </td>
+                        <td>
+                            <a href="congratulate/{{ user.user }}"><button class="btn btn-success btn-sm">Congratulate</button></a>
                         </td>
                     </tr>
                     {% endfor %}
