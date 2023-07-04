@@ -20,3 +20,11 @@ def user_post_path(instance, filename):
 class Post(models.Model):
     user_posted = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=user_post_path) # pip install pillow
+
+class Items(models.Model):
+    description = models.CharField(max_length = 200)
+    store = models.CharField(max_length=100)
+    price = models.FloatField()
+    price_now = models.FloatField(blank=True,null = True)
+    image = models.ImageField()
+    
