@@ -195,6 +195,11 @@ def add_points(request):
         context = { 'user' : request.user }
     return  render(request, template, context)
 
-#driver = webdriver.Chrome('C:\Users\Paulk\Downloads\chromedriver')
-#driver.get('https://www.tesco.ie/groceries/en-IE/promotions')
-#offers = driver.find_elements_by_xpath('//*[@id="carouselWrapper"]/div[2]/div[2]/div[2]/div[1]/div/div[2]/div/ul/li[3]/div/div/div')
+def search_func(request):
+    if request.method == "POST":
+        query_name = request.POST.get('description',None)
+        if query_name:
+            results = Items.objects.filter(description__contains=query_name)
+            return render(request, 'product.html', {"results":results})
+
+    return render(request, 'product.html')

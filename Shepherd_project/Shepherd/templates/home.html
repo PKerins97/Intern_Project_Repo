@@ -3,7 +3,6 @@
 
 <head>
 
-  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shepherd</title>
@@ -22,8 +21,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-  <link rel="stylesheet" href="/static/homestylesheet.css">
+    <link rel="stylesheet" href="/static/homestylesheet.css">
 </head>
 
 <body>
@@ -74,13 +72,14 @@
           <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
         </a>
         <!-- Search form -->
-        <form class="d-none d-md-flex input-group w-auto my-auto">
-          <input autocomplete="off" type="search" class="form-control rounded" placeholder='Search'
-            style="min-width: 225px;" />
+        <form action="{% url 'product' %}" method="POST">
+          {% csrf_token %} 
+          <input type="text" name="description">
+          <input type="submit" name="submit" value="Search">
           <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-        </form>
+      </form>
 
-          <!-- Icon -->
+      <!-- Icon -->
           <li class="nav-item">
             <a class="nav-link me-3 me-lg-0" href="#">
               <i class="fas fa-fill-drip"></i>
@@ -136,11 +135,6 @@
       {% endif %}
 
       {% if error_message %}
-      <!--
-      <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-        <strong>{{ error_message }}</strong> 
-      </div>-->
       <div class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <strong>{{ error_message }}</strong>
@@ -180,7 +174,7 @@
         </div>
       </div>
     </div>
-    
+    <br>
 
     <div class="container">
       <!-- Trigger the modal with a button -->

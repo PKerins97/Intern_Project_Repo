@@ -17,6 +17,7 @@ urlpatterns = [
     path('add-point/', views.add_points, name='add_point'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('populate/', views.populate, name='populate'),
+     path('product/', views.search_func, name='product'),
     path('map/', views.manualPoints, name='manual'),
     path('ocr/mindee/', views.mindeeOCR, name='mindee'),
     path('password-reset/', PasswordResetView.as_view(template_name='registration/password_reset.html'),name='password-reset'),
