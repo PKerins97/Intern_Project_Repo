@@ -279,10 +279,10 @@
                         </td>
                         <!-- <td>Bangalore</td> -->
                         <td>
-                            <a href="connect/{{ user.user }}"><button class="btn btn-primary btn-sm">Connect</button></a>
+                            <a href="connect/?receiver={{user.user}}"><button class="btn btn-primary btn-sm">Connect</button></a>
                         </td>
                         <td>
-                            <a href="congratulate/{{ user.user }}"><button class="btn btn-success btn-sm">Congratulate</button></a>
+                            <a href="congratulate/?receiver={{user.user}}"><button class="btn btn-success btn-sm">Congratulate</button></a>
                         </td>
                     </tr>
                     {% endfor %}

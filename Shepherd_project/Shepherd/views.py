@@ -28,7 +28,14 @@ def home(request):
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
             'form': ManualPointsForm()
-       }
+            }
+        messages = Message.objects.filter(receiver=request.user).filter(consumed=False)
+        if (messages==None):
+            context['has_messages': False]
+        else:
+            context['has_messages': True]
+            context['messages': messages]
+        
     else:
         context = { 'user' : request.user }
     return  render(request, template, context)
@@ -202,9 +209,25 @@ def add_points(request):
 #offers = driver.find_elements_by_xpath('//*[@id="carouselWrapper"]/div[2]/div[2]/div[2]/div[1]/div/div[2]/div/ul/li[3]/div/div/div')
 
 def congratulate(request):
-    request
     
-    return redirect('home')
+    receiver_name = request.GET['receiver']
+    receiver = User.objects.get(username=receiver_name)
+    
+    messages = Message.objects.filter(receiver=request.user).filter(consumed=False)
+    print(messages)
+
+    # message = Message(sender=request.user, receiver=receiver, message='-congrats', consumed=False)
+    # message.save()
+    
+    
+    return redirect('leaderboard')
 
 def connect(request):
-    pass
+    
+    receiver_name = request.GET['receiver']
+    receiver = User.objects.get(username=receiver_name)
+    
+    message = Message(sender=request.user, receiver=receiver, message='-connect-ask', consumed=False)
+    message.save()
+    
+    return redirect('leaderboard')

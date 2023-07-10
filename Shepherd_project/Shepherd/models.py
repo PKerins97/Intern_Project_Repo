@@ -20,3 +20,9 @@ def user_post_path(instance, filename):
 class Post(models.Model):
     user_posted = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=user_post_path) # pip install pillow
+    
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message_sender')
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message_getter')
+    message = models.TextField()
+    consumed = models.BooleanField()
