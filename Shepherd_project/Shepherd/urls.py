@@ -10,6 +10,7 @@ from django.contrib.auth.views import (
 
 urlpatterns = [
     path('home/', views.home, name='home'),
+    path('home/connect/', views.connect, name='connectHome'),
     path('register/', views.register, name='register'),
     path('', views.login, name='login'),
     path('login/', views.login, name='login'),

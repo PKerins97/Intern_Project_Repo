@@ -277,9 +277,16 @@
                                 <!-- <small class="text-success"><i class="fa fa-arrow-up"></i>5%</small> -->
                             </div>
                         </td>
-                        <!-- <td>Bangalore</td> -->
                         <td>
+                            {% if user.user.sent_me and user.user.i_sent %}
+                            <button class="btn btn-secondary btn-sm">Connected</button>
+                            {% elif user.user.sent_me and not user.user.i_sent %}
+                            <a href="connect/?receiver={{user.user}}"><button class="btn btn-primary btn-sm">Accept</button></a>
+                            {% elif user.user.i_sent and not user.user.sent_me %}
+                            <button class="btn btn-primary disabled btn-sm">Sent</button>
+                            {% else %}
                             <a href="connect/?receiver={{user.user}}"><button class="btn btn-primary btn-sm">Connect</button></a>
+                            {% endif %}
                         </td>
                         <td>
                             <a href="congratulate/?receiver={{user.user}}"><button class="btn btn-success btn-sm">Congratulate</button></a>

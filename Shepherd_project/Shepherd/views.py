@@ -36,7 +36,7 @@ def home(request):
         else:
             context['has_messages'] = True
             context['messages'] = list(messages)
-            messages.update(consumed=True)
+            # messages.update(consumed=True)
         
     else:
         context = { 'user' : request.user }
@@ -93,11 +93,14 @@ def register(request):
    
 def leaderboard(request):
     template = 'leaderboard.html'
-    topUsers = Points.objects.order_by('-points')
+    topUsers = Points.objects.order_by('-points')[:10]
+    messages = Message.objects.filter(message="-connect")
+    for user in topUsers:
+        user.user.i_sent = messages.filter(sender=request.user, receiver=user.user).exists()
+        user.user.sent_me = messages.filter(sender=user.user, receiver=request.user).exists()
     context = {
-        'champs': topUsers[:10]
+        'champs': topUsers
     }
-    this_user_id = topUsers.get(user=request.user)
     if (request.user.is_authenticated):
         context['current_user'] = request.user
         context['mypoints'] = Points.objects.get(user=request.user)
@@ -227,7 +230,12 @@ def connect(request):
     receiver_name = request.GET['receiver']
     receiver = User.objects.get(username=receiver_name)
     
-    message = Message(sender=request.user, receiver=receiver, message='-connect-ask', consumed=False)
-    message.save()
+    # If not message has been sent from the user to that user before, do so
+    if (not Message.objects.filter(sender=request.user, receiver=receiver, message='-connect').exists()):
+        message = Message(sender=request.user, receiver=receiver, message='-connect', consumed=False)
+        message.save()
+    # If it is an acceptance message
+    else:
+        pass
     
     return redirect('leaderboard')
