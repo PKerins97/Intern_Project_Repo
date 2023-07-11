@@ -30,11 +30,13 @@ def home(request):
             'form': ManualPointsForm()
             }
         messages = Message.objects.filter(receiver=request.user).filter(consumed=False)
+        print(messages)
         if (messages==None):
-            context['has_messages': False]
+            context['has_messages'] = False
         else:
-            context['has_messages': True]
-            context['messages': messages]
+            context['has_messages'] = True
+            context['messages'] = list(messages)
+            messages.update(consumed=True)
         
     else:
         context = { 'user' : request.user }
@@ -213,13 +215,11 @@ def congratulate(request):
     receiver_name = request.GET['receiver']
     receiver = User.objects.get(username=receiver_name)
     
+    message = Message(sender=request.user, receiver=receiver, message='-congrats', consumed=False)
+    message.save()
+    
     messages = Message.objects.filter(receiver=request.user).filter(consumed=False)
     print(messages)
-
-    # message = Message(sender=request.user, receiver=receiver, message='-congrats', consumed=False)
-    # message.save()
-    
-    
     return redirect('leaderboard')
 
 def connect(request):

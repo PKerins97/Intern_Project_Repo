@@ -191,17 +191,23 @@
       {% endif %}
     </div>
 
-    <div th:if="${check_message} != null">
-      <div class="toast show position-absolute" style="right: 0;">
-        <div class="toast-header d-flex align-items-center">
-          <div class="mx-auto">You have a message</div>
-          <button type="button" class="btn-close m ml-auto closeToast" data-bs-dismiss="toast"></button>
-        </div>
-        <div class="toast-body">
-          <p>User sends his regards</p>
-        </div>
+    {% if has_messages %}
+    {% for message in messages %}
+    <div class="toast show position-absolute" style="right: 0;">
+      <div class="toast-header d-flex align-items-center">
+        <div class="mx-auto">You have a message</div>
+        <button type="button" class="btn-close m ml-auto closeToast" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        {% if message.message == "-congrats" %}
+        <p>{{message.sender.username}} sends his congratulations</p>
+        {% elif message.message == "-connect-ask" %}
+        <p>{{message.sender.username}} wants to connect</p>
+        {% endif %}
       </div>
     </div>
+    {% endfor %}
+    {% endif %}
 
     <div class="container">
       <!-- Trigger the modal with a button -->
