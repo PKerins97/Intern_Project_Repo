@@ -31,10 +31,10 @@
             <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
               <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
             </a>
-            <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+            <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
               <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
             </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
               <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
             </a>
             <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -69,11 +69,12 @@
                     <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
                 </a>
                 <!-- Search form -->
-                <form class="d-none d-md-flex input-group w-auto my-auto">
-                    <input autocomplete="off" type="search" class="form-control rounded"
-                        placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px;" />
+                <form action="{% url 'product' %}" method="POST">
+                    {% csrf_token %} 
+                    <input type="text" name="description" placeholder = "Search">
+                    <input type="submit" name="submit" value="Search">
                     <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-                </form>
+                  </form>
 
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">

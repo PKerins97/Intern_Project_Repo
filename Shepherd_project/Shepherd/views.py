@@ -10,6 +10,7 @@ import random
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
+from django.core.files.storage import default_storage
 
 
 from .forms import *
@@ -200,6 +201,10 @@ def search_func(request):
         query_name = request.POST.get('description',None)
         if query_name:
             results = Items.objects.filter(description__contains=query_name)
+            for result in results:
+                image_path = 'img/' + result.image.name
+                image_url = default_storage.url(image_path)
+                result.image_url = image_url
             return render(request, 'product.html', {"results":results})
 
     return render(request, 'product.html')

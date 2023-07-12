@@ -25,99 +25,166 @@
 </head>
 
 <body>
-  <!--Main Navigation-->
-  <header>
+   <!--Main Navigation-->
+   <header>
     <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
-          </a>
-          <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
-          </a>
-          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
-          </a>
-          <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
-          </a>
-        </div>
+   <!-- Sidebar -->
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
+        </a>
+        <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
+        </a>
+        <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
+          class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
+        </a>
+        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
+        </a>
       </div>
-    </nav>
+    </div>
+  </nav>
     <!-- Sidebar -->
 
     <!-- Navbar -->
     <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
-          aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+                aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-        <!-- Brand -->
-        <a href="{% url 'home' %}" class="navbar-brand">
-          <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
-        </a>
-        <!-- Search form -->
-        <form action="{% url 'product' %}" method="POST">
-          {% csrf_token %} 
-          <input type="text" name="description">
-          <input type="submit" name="submit" value="Search">
-          <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-      </form>
+            <!-- Brand -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
+            </a>
+            <!-- Search form --> 
+            <form action="{% url 'product' %}" method="POST">
+              {% csrf_token %} 
+              <input type="text" name="description" placeholder = "Search">
+              <input type="submit" name="submit" value="Search">
+              <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+            </form>
+                
+                
+           
 
-      <!-- Icon -->
-          <li class="nav-item">
-            <a class="nav-link me-3 me-lg-0" href="#">
-              <i class="fas fa-fill-drip"></i>
-            </a>
-          </li>
-          <!-- Icon -->
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#">
-              <i class="fab fa-github"></i>
-            </a>
-          </li>
+            <!-- Right links -->
+            <ul class="navbar-nav ms-auto d-flex flex-row">
+                <!-- Notification dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
+                        id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
 
-          <!-- Avatar -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22"
-                alt="Avatar" loading="lazy" />
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-              <li>
-                <a class="dropdown-item" href="#">My profile</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Settings</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Logout</a>
-              </li>
+                <!-- Icon -->
+                <li class="nav-item">
+                    <a class="nav-link me-3 me-lg-0" href="#">
+                        <i class="fas fa-fill-drip"></i>
+                    </a>
+                </li>
+                <!-- Icon -->
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+
+                <!-- Icon dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="flag-united-kingdom flag m-0"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English
+                                <i class="fa fa-check text-success ms-2"></i></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Avatar -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                        id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                            height="22" alt="Avatar" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-        </ul>
-      </div>
-      <!-- Container wrapper -->
+        </div>
+        <!-- Container wrapper -->
     </nav>
     <!-- End of Navbar -->
-  </header>
-  <!-- End of Main Navigation-->
+</header>
+<!-- End of Main Navigation-->
 
   <!--Main layout-->
   <main style="margin-top: 58px;">
@@ -276,7 +343,7 @@
               <a href="#!">
                 <div class="mask">
                   <div class="d-flex justify-content-start align-items-end h-100">
-                    <h5><span class="badge bg-primary ms-2" style = "background-color = yellow;">Clubcard Price
+                    <h5><span class="badge bg-primary ms-2" style = "background-color: yellow;">Clubcard Price
                       Any 3 for €4 Clubcard Price</span></h5>
                   </div>
                 </div>
@@ -329,7 +396,7 @@
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/e8265ce3-a0f9-4f48-b593-a735f303ed27/0ff03d62-0986-4639-91a9-04227d1a7f87_1450377647.jpeg?h=540&w=540"
+              <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/659b7deb-5770-473b-bfba-f5331a9e1ece/08249ab9-f9e6-4f1a-a0b7-d673adfb3395_1351138377.jpeg?h=540&w=540"
                 class="w-100" />
               <a href="#!">
                 <div class="mask">
@@ -553,7 +620,7 @@
   </main>
   <!--End of Main layout-->
 </body>
-<script defer>
+<!-- <script defer>
   function changeText(){
     var before = "{{form.cost_before.value}}";
     var after = "{{form.cost_after.value}}";
@@ -564,4 +631,4 @@
       document.getElementById("getPointsButton").textContent = "Get "+ point +" points";
     }
   }
-</script>
+</script> -->
