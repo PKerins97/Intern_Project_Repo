@@ -32,30 +32,33 @@
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
       <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
-          </a>
-          <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
-          </a>
-          <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
-          </a>
-        </div>
+          <div class="list-group list-group-flush mx-3 mt-4">
+              <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                  <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
+              </a>
+              <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple "
+                  aria-current="true">
+                  <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+                  <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
+              </a>
+              <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
+                  class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
+              <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                      class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+              <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                      class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
+              <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                  <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
+              </a>
+              <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
+                  <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
+              </a>
+          </div>
       </div>
-    </nav>
-    <!-- Sidebar -->
+  </nav>
+  <!-- Sidebar -->
 
     <!-- Navbar -->
     <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -209,23 +212,23 @@
     </div>
     {% endfor %}
     {% endif %}
-
+ <!-- 
     <div class="container">
-      <!-- Trigger the modal with a button -->
+     Trigger the modal with a button 
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit
         Shopping</button>
 
-      <!-- Modal for daily reward -->
+      <!-- Modal for daily reward 
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
-          <!-- Modal content-->
+           Modal content
           <div class="modal-content">
             <form action="{% url 'manual' %}" method="post">
               {% csrf_token %}
               <div class="modal-header">
                 <h4 class="modal-title">Add points manually</h4>
-                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <
               </div>
               <div class="modal-body">
                 {% csrf_token %}
@@ -242,6 +245,7 @@
         </div>
       </div>
     </div>
+      -->
 
     <div class="container">
       <!-- Trigger the modal with a button -->
