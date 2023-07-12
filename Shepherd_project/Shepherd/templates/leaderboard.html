@@ -24,34 +24,34 @@
     <!--Main Navigation-->
     <header>
         <!-- Sidebar -->
-       <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-        <div class="position-sticky">
-          <div class="list-group list-group-flush mx-3 mt-4">
-            <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-              <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
-            </a>
-            <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-              <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
-              <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
-            </a>
-            <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
-            </a>
-            <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
-              <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
-            </a>
-          </div>
-        </div>
-      </nav>
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
+                    </a>
+                    <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple active"
+                        aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
+                    </a>
+                    <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
+                    </a>
+                    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
         <!-- Sidebar -->
 
         <!-- Navbar -->
@@ -200,7 +200,17 @@
                                 <p class="text-muted mb-0">@{{ champs.1.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                        {% if user.user.sent_me and user.user.i_sent %}
+                                        <button class="btn btn-secondary btn-sm">Connected</button>
+                                        {% elif user.user.sent_me and not user.user.i_sent %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                        {% elif user.user.i_sent and not user.user.sent_me %}
+                                        <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                        {% else %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                        {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -220,7 +230,17 @@
                                 <p class="text-muted mb-0">@{{ champs.0.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                        {% if user.user.sent_me and user.user.i_sent %}
+                                        <button class="btn btn-secondary btn-sm">Connected</button>
+                                        {% elif user.user.sent_me and not user.user.i_sent %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                        {% elif user.user.i_sent and not user.user.sent_me %}
+                                        <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                        {% else %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                        {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -240,7 +260,17 @@
                                 <p class="text-muted mb-0">@{{ champs.2.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                            {% if user.user.sent_me and user.user.i_sent %}
+                                            <button class="btn btn-secondary btn-sm">Connected</button>
+                                            {% elif user.user.sent_me and not user.user.i_sent %}
+                                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                            {% elif user.user.i_sent and not user.user.sent_me %}
+                                            <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                            {% else %}
+                                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                            {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -256,9 +286,8 @@
                 <thead>
                     <tr>
                         <th>User</th>
+                        <th>Points</th>
                         <th>Status</th>
-                        <!-- <th>Location</th> -->
-                        <th>Email</th>
                         <th>Congratulate</th>
                     </tr>
                 </thead>
@@ -281,10 +310,19 @@
                                 <!-- <small class="text-success"><i class="fa fa-arrow-up"></i>5%</small> -->
                             </div>
                         </td>
-                        <!-- <td>Bangalore</td> -->
-                        <td>{{user.user.email}}</td>
                         <td>
-                            <button class="btn btn-success btn-sm">Congratulate</button>
+                            {% if user.user.sent_me and user.user.i_sent %}
+                            <button class="btn btn-secondary btn-sm">Connected</button>
+                            {% elif user.user.sent_me and not user.user.i_sent %}
+                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                            {% elif user.user.i_sent and not user.user.sent_me %}
+                            <button class="btn btn-primary disabled btn-sm">Sent</button>
+                            {% else %}
+                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="congratulate/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-success btn-sm">Congratulate</button></a>
                         </td>
                     </tr>
                     {% endfor %}
