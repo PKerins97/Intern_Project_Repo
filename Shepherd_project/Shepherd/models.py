@@ -32,4 +32,8 @@ class Items(models.Model):
     store = models.CharField(max_length=100)
     price = models.FloatField()
     price_now = models.FloatField(blank=True,null = True)
-    image = models.ImageField(upload_to='static/img')
+    image = models.ImageField(upload_to='static')
+
+    
+    
+
