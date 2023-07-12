@@ -203,7 +203,7 @@
         <p>{{message.sender.username}} sends his congratulations</p>
         {% elif message.message == "-connect" %}
         <p>{{message.sender.username}} wants to connect</p>
-        <a href="connect/?receiver={{message.sender}}"><button class="btn btn-primary btn-sm">Accept</button></a>
+        <a href="connect/?receiver={{message.sender}}&src=home"><button class="btn btn-primary btn-sm">Accept</button></a>
         {% endif %}
       </div>
     </div>

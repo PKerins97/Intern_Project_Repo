@@ -36,7 +36,7 @@ def home(request):
         else:
             context['has_messages'] = True
             context['messages'] = list(messages)
-            # messages.update(consumed=True)
+            messages.update(consumed=True)
         
     else:
         context = { 'user' : request.user }
@@ -228,6 +228,7 @@ def congratulate(request):
 def connect(request):
     
     receiver_name = request.GET['receiver']
+    redirect_to = request.GET['src']
     receiver = User.objects.get(username=receiver_name)
     
     # If not message has been sent from the user to that user before, do so
@@ -238,4 +239,4 @@ def connect(request):
     else:
         pass
     
-    return redirect('leaderboard')
+    return redirect(redirect_to)

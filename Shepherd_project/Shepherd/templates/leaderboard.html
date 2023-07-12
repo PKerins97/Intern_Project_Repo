@@ -197,7 +197,17 @@
                                 <p class="text-muted mb-0">@{{ champs.1.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                        {% if user.user.sent_me and user.user.i_sent %}
+                                        <button class="btn btn-secondary btn-sm">Connected</button>
+                                        {% elif user.user.sent_me and not user.user.i_sent %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                        {% elif user.user.i_sent and not user.user.sent_me %}
+                                        <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                        {% else %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                        {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -217,7 +227,17 @@
                                 <p class="text-muted mb-0">@{{ champs.0.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                        {% if user.user.sent_me and user.user.i_sent %}
+                                        <button class="btn btn-secondary btn-sm">Connected</button>
+                                        {% elif user.user.sent_me and not user.user.i_sent %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                        {% elif user.user.i_sent and not user.user.sent_me %}
+                                        <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                        {% else %}
+                                        <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                        {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -237,7 +257,17 @@
                                 <p class="text-muted mb-0">@{{ champs.2.user.username }}</p>
                                 <hr>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span><i class="fa fa-map-marker"></i> Bangalore</span>
+                                    <span>
+                                            {% if user.user.sent_me and user.user.i_sent %}
+                                            <button class="btn btn-secondary btn-sm">Connected</button>
+                                            {% elif user.user.sent_me and not user.user.i_sent %}
+                                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
+                                            {% elif user.user.i_sent and not user.user.sent_me %}
+                                            <button class="btn btn-primary disabled btn-sm">Sent</button>
+                                            {% else %}
+                                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
+                                            {% endif %}
+                                    </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
                                 </div>
                             </div>
@@ -281,15 +311,15 @@
                             {% if user.user.sent_me and user.user.i_sent %}
                             <button class="btn btn-secondary btn-sm">Connected</button>
                             {% elif user.user.sent_me and not user.user.i_sent %}
-                            <a href="connect/?receiver={{user.user}}"><button class="btn btn-primary btn-sm">Accept</button></a>
+                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
                             {% elif user.user.i_sent and not user.user.sent_me %}
                             <button class="btn btn-primary disabled btn-sm">Sent</button>
                             {% else %}
-                            <a href="connect/?receiver={{user.user}}"><button class="btn btn-primary btn-sm">Connect</button></a>
+                            <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Connect</button></a>
                             {% endif %}
                         </td>
                         <td>
-                            <a href="congratulate/?receiver={{user.user}}"><button class="btn btn-success btn-sm">Congratulate</button></a>
+                            <a href="congratulate/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-success btn-sm">Congratulate</button></a>
                         </td>
                     </tr>
                     {% endfor %}
