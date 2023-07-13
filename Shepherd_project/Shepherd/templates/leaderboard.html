@@ -46,9 +46,15 @@
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
                     </a>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
                     </a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Login</span>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
@@ -172,6 +178,11 @@
                         </ul>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                <p>
+                  Welcome {{ user.first_name }}. You have {{ mypoints|default:'no' }} points.
+                </p>
+                {% endif %}        
             </div>
             <!-- Container wrapper -->
         </nav>
@@ -311,7 +322,11 @@
                             </div>
                         </td>
                         <td>
-                            {% if user.user.sent_me and user.user.i_sent %}
+                            {% if current_user == None %}
+                            <a href="{% url 'login' %}"><button class="btn btn-secondary btn-sm">
+                                    Login
+                            </button></a>
+                            {% elif user.user.sent_me and user.user.i_sent %}
                             <button class="btn btn-secondary btn-sm">Connected</button>
                             {% elif user.user.sent_me and not user.user.i_sent %}
                             <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
