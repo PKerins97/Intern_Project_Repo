@@ -322,7 +322,11 @@
                             </div>
                         </td>
                         <td>
-                            {% if user.user.sent_me and user.user.i_sent %}
+                            {% if current_user == None %}
+                            <a href="{% url 'login' %}"><button class="btn btn-secondary btn-sm">
+                                    Login
+                            </button></a>
+                            {% elif user.user.sent_me and user.user.i_sent %}
                             <button class="btn btn-secondary btn-sm">Connected</button>
                             {% elif user.user.sent_me and not user.user.i_sent %}
                             <a href="connect/?receiver={{user.user}}&src=leaderboard"><button class="btn btn-primary btn-sm">Accept</button></a>
