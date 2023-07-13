@@ -214,11 +214,10 @@ def search_func(request):
         if query_name:
             results = Items.objects.filter(description__contains=query_name)
             for result in results:
-                image_path = 'img/' + result.image.name
+                image_path = 'static/' + result.image.name
                 image_url = default_storage.url(image_path)
                 result.image_url = image_url
             return render(request, 'product.html', {"results":results})
-
     return render(request, 'product.html')
 
 def congratulate(request):
