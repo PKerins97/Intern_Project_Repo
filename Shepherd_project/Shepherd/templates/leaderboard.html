@@ -172,6 +172,11 @@
                         </ul>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                <p>
+                  Welcome {{ user.first_name }}. You have {{ mypoints|default:'no' }} points.
+                </p>
+                {% endif %}        
             </div>
             <!-- Container wrapper -->
         </nav>

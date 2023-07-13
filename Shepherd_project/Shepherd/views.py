@@ -102,7 +102,7 @@ def leaderboard(request):
     }
     if (request.user.is_authenticated):
         context['current_user'] = request.user
-        context['mypoints'] = Points.objects.get(user=request.user)
+        context['mypoints'] = Points.objects.get(user=request.user).points
     return render(request, template, context)
          
 def populate(request):
