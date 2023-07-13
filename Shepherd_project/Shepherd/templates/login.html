@@ -27,14 +27,16 @@
     <div id = "login_container">
         <img id = "logo" src = "{% static 'Shepherd_Logo.png' %}">
         <div id = "login_body">
-            <form method = "POST" novalidate>
+            <form method = "POST" id="login_form" novalidate>
             {% csrf_token %}
             <h2>Login</h2>
             {{ form.as_p }}
-            <input id = "login_button" type="submit" value="Login"/>
-            <p>Forgot your password? <a  href="{%url 'password-reset'%}"> Reset Password</a></p>
-            <p>Don't have an account?<a  href="{% url 'register' %}"> Register</a></p>
-            </form>
+            <!-- <a type="submit">Login</a> -->
+            <a href="javascript:{}" onclick="document.getElementById('login_form').submit();">Login</a>
+          </form>
+          <div><a  href="{% url 'password-reset' %}">Forgot your password?</a></div>
+          <span><a  href="{% url 'register' %}">Register</a></span>
+          <span><a  href="{% url 'home' %}">Home</a></span>
         </div>
     </div>
 </body>
