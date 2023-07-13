@@ -94,9 +94,11 @@ def leaderboard(request):
     template = 'leaderboard.html'
     topUsers = Points.objects.order_by('-points')[:10]
     messages = Message.objects.filter(message="-connect")
-    for user in topUsers:
-        user.user.i_sent = messages.filter(sender=request.user, receiver=user.user).exists()
-        user.user.sent_me = messages.filter(sender=user.user, receiver=request.user).exists()
+    if (request.user.is_authenticated):
+        for user in topUsers:
+            user.user.i_sent = messages.filter(sender=request.user, receiver=user.user).exists()
+            user.user.sent_me = messages.filter(sender=user.user, receiver=request.user).exists()
+            
     context = {
         'champs': topUsers
     }
