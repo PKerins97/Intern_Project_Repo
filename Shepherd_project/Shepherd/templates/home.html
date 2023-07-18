@@ -42,12 +42,38 @@
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
         </a>-->
           <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple"><i
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span></a>
+
+          <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
+            <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span></a>
+
+          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
               class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
           <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
               class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>-->
           <a href="{% url 'logout' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
+
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+
+          <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
+
+          <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span></a>
+            
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
           </a>
+          {% else %}
+          <a href="{% url 'login' %}" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Login</span>
+          </a>
+          {% endif %}
+
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button>
         </div>
       </div>
     </nav>
@@ -172,6 +198,13 @@
             </ul>
           </li>
         </ul>
+
+        {% if user.is_authenticated %}
+        <p>
+          Welcome {{ user.first_name }}. You have {{ mypoints|default:'no' }} points.
+        </p>
+        {% endif %}
+  
       </div>
       <!-- Container wrapper -->
     </nav>
@@ -181,24 +214,6 @@
 
   <!--Main layout-->
   <main style="margin-top: 58px;">
-    <div class="container pt-4">
-      {% if user.is_authenticated %}
-      <p>
-        Welcome {{ user.username }}. You have {{ mypoints|default:'no' }} points.
-      </p>
-        {% else %}
-      <p>
-        Welcome Stranger.
-      </p>
-      {% endif %}
-
-        {% if error_message %}
-      <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <strong>{{ error_message }}</strong>
-      </div>
-      {% endif %}
-    </div>
 
     {% if has_messages %}
     {% for message in messages %}
