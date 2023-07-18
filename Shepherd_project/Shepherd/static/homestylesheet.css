@@ -3,9 +3,11 @@ html{
   overflow-x: hidden;
 }
 body {
-    background-color: #fbfbfb;
     max-width:100%;
+    background-color: #f2f0ed;
     overflow-x: hidden;
+    
+    margin-right: 5px;
   }
   @media (min-width: 991.98px) {
     main {
@@ -32,9 +34,12 @@ body {
   }
   .sidebar .active {
     border-radius: 5px;
+    background-color: #C4d700;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   }
-  
+  .sidebar .hover {
+    border-radius: 5px;
+  }
   .sidebar-sticky {
     position: relative;
     top: 0;
@@ -43,7 +48,9 @@ body {
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
-
+.list-group-item-action-custom{
+  background-color: #C4d700;
+}
 .carousel_container{
   width:80%;
 }
@@ -73,3 +80,112 @@ body {
 .closebtn:hover {
   color: black;
 }
+
+.bg-custom{
+  background-color: #C4d700;
+}
+
+* {box-sizing: border-box;}
+    body {font-family: Verdana, sans-serif;}
+    .mySlides {display: none;}
+    img {vertical-align: middle;}
+    
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 90%;
+      position: relative;
+      margin: auto;
+      /* border:5px solid lightgray; */
+    }
+     
+    /* The dots/bullets/indicators */
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    
+    .active {
+      background-color: #717171;
+    }
+    
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 2s;
+    }
+
+    
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+    
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .text {font-size: 11px}
+    }
+
+    .navbar-brand-custom{
+      margin:0px,0px,0px,15px;
+    }
+
+    .searchBox {
+      position: absolute;
+      top: -10px;
+      left: 1420px;
+      transform:  translate(-50%,50%);
+      background-color: #004831;
+      height: 40px;
+      border-radius: 40px;
+      padding: 10px;
+  
+  }
+  
+  .searchBox:hover > .searchInput {
+      width: 240px;
+      padding: 0 6px;
+  }
+  
+  .searchBox:hover > .searchButton {
+    background: white;
+    color : rgb(145,183,174);
+  }
+  
+  .searchButton {
+      color: white;
+      float: right;
+      margin-top: -7px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #004831;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s;
+  }
+  
+  .searchInput {
+      border:none;
+      background: none;
+      outline:none;
+      float:left;
+      padding: 0;
+      color: white;
+      font-size: 16px;
+      transition: 0.4s;
+      line-height: 40px;
+      width: 0px;
+  
+  }
+  @media screen and (max-width: 620px) {
+  .searchBox:hover > .searchInput {
+      width: 150px;
+      padding: 0 6px;
+  }
+  }
