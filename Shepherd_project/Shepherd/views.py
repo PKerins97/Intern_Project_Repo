@@ -251,3 +251,6 @@ def connect(request):
         pass
     
     return redirect(redirect_to)
+
+def history(request):
+    pass
