@@ -41,14 +41,12 @@
           <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple active">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
         </a>-->
-          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple"><i
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span></a>
+          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Enter Points</span></a>
 
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
             <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span></a>
 
-          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
           <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
               class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>-->
           <a href="{% url 'logout' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
@@ -62,15 +60,9 @@
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span></a>
             
-          {% if user.is_authenticated %}
           <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
           </a>
-          {% else %}
-          <a href="{% url 'login' %}" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Login</span>
-          </a>
-          {% endif %}
 
           <!-- Trigger the modal with a button -->
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button>
@@ -107,7 +99,7 @@
       
 
         <div class="searchBox">
-          <!-- <form action="{% url 'product' %}" method="POST"> -->
+          <form action="{% url 'product' %}" method="POST"> 
             {% csrf_token %}
             <input class="searchInput" type="text" name="" placeholder="Search">
             <button class="searchButton" type="submit">
@@ -117,7 +109,7 @@
                 </svg>
               </i>
             </button>
-          <!-- </form> -->
+           </form> 
         </div> 
         
         <!-- Right links -->
@@ -198,12 +190,6 @@
             </ul>
           </li>
         </ul>
-
-        {% if user.is_authenticated %}
-        <p>
-          Welcome {{ user.first_name }}. You have {{ mypoints|default:'no' }} points.
-        </p>
-        {% endif %}
   
       </div>
       <!-- Container wrapper -->
@@ -240,7 +226,7 @@
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit
         Shopping</button>
 
-      <!-- Modal for daily reward 
+       Modal for daily reward 
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
