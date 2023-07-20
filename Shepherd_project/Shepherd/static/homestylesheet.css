@@ -136,56 +136,130 @@ body {
 
     .searchBox {
       position: absolute;
-      top: -10px;
+      top: 30px;
       left: 1420px;
-      transform:  translate(-50%,50%);
-      background-color: #004831;
-      height: 40px;
-      border-radius: 40px;
+  
+  }
+    .searchform{
+      position: relative;
+      transform: translate(-50%,-50%);
+      transition: all 1s;
+      width: 50px;
+      height: 50px;
+      background: white;
+      box-sizing: border-box;
+      border-radius: 25px;
+      border: 4px solid white;
+      padding: 5px;
+  }
+  input{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;;
+      height: 42.5px;
+      line-height: 30px;
+      outline: 0;
+      border: 0;
+      display: none;
+      font-size: 1em;
+      border-radius: 20px;
+      padding: 0 20px;
+  }
+  .fa{
+      box-sizing: border-box;
       padding: 10px;
-  
-  }
-  
-  .searchBox:hover > .searchInput {
-      width: 240px;
-      padding: 0 6px;
-  }
-  
-  .searchBox:hover > .searchButton {
-    background: white;
-    color : rgb(145,183,174);
-  }
-  
-  .searchButton {
-      color: white;
-      float: right;
-      margin-top: -7px;
-      width: 35px;
-      height: 35px;
+      width: 42.5px;
+      height: 42.5px;
+      position: absolute;
+      top: 0;
+      right: 0;
       border-radius: 50%;
-      background: #004831;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: 0.4s;
+      color: #C4d700;
+      text-align: center;
+      font-size: 1.2em;
+      transition: all 1s;
   }
   
-  .searchInput {
-      border:none;
-      background: none;
-      outline:none;
-      float:left;
-      padding: 0;
-      color: white;
-      font-size: 16px;
-      transition: 0.4s;
-      line-height: 40px;
-      width: 0px;
+  .searchform:hover{
+    width: 200px;
+    cursor: pointer;
+}
+.searchform:hover input{
+    display: block;
+}
+.searchform:hover .fa{
+    background: #C4d700;
+    color: white;
+}
+
+  .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width:55px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
   
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    left: 40%;
+    margin-left: 10px;
   }
-  @media screen and (max-width: 620px) {
-  .searchBox:hover > .searchInput {
-      width: 150px;
-      padding: 0 6px;
+  
+  /* Popup arrow
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  } */
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
   }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+  .audioIcon{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width:55px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .productContaintars{
+    padding-bottom:20px;
   }
