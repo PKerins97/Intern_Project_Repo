@@ -259,3 +259,7 @@ body {
     -ms-user-select: none;
     user-select: none;
   }
+
+  .productContaintars{
+    padding-bottom:20px;
+  }
