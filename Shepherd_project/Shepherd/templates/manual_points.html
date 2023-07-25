@@ -39,22 +39,28 @@
                   aria-current="true">
                   <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
               </a>
-              <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+              <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
                   <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
               </a>
               <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple active"><i
                   class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
-              <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              <a href="{% url 'history' %}" class="list-group-item list-group-item-action py-2 ripple"><i
                       class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
-              <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                       class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
-              <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+              <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple">
                   <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span>
               </a>
+              {% if user.is_authenticated %}
               <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
                   <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
               </a>
-          </div>
+              {% else %}
+              <a href="{% url 'login' %}" class="list-group-item list-group-item-action py-2 ripple">
+                  <i class="fas fa-chart-pie fa-fw me-3"></i><span>Login</span>
+              </a>
+              {% endif %}
+            </div>
       </div>
   </nav>
   <!-- Sidebar -->

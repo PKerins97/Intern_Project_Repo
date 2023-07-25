@@ -9,6 +9,14 @@ class Points(models.Model):
     date_added = models.DateTimeField(default=timezone.now)
     last_action_time = models.DateTimeField(null=True,blank=True)
 
+class Purchase(models.Model):
+    date = models.DateField(default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    money_before = models.FloatField(null=True)
+    money_after = models.FloatField(null=True)
+    description = models.CharField(max_length=128, default="")
+    shop = models.CharField(max_length=16, default="")
+    
 class DailyLogin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)

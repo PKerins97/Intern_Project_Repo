@@ -136,13 +136,23 @@ def manualPoints(request):
                 cashAfter = float(form['cost_after'].data)
             except ValueError:
                 return redirect('manual')
+            description = form['description'].data
+            shop = form['shop'].data
             #TODO: decide which points system works
             p = Points.objects.get(user=request.user)
             p.points += (cashBefore-cashAfter)*100
             p.save()
+            purchase = Purchase(
+                user = request.user,
+                money_before = cashBefore,
+                money_after = cashAfter,
+                description = description,
+                shop = shop
+            )
+            purchase.save()
             return redirect('home')
         else:
-            return redirect('home')
+            return redirect('manual')
     
 def mindeeOCR(request):
     
@@ -253,4 +263,13 @@ def connect(request):
     return redirect(redirect_to)
 
 def history(request):
-    pass
+    template = 'history.html'
+    orders = Purchase.objects.filter(user=request.user)
+    for order in orders:
+        order.points = 100 * (order.money_before - order.money_after)
+        
+    context = {
+        'mypoints': Points.objects.get(user_id=request.user.id).points,
+        'my_orders': orders
+    }
+    return render(request, template, context)
