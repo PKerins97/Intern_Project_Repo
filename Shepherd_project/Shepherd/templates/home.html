@@ -28,23 +28,31 @@
   <!--Main Navigation-->
   <header>
     <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-custom">
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
-              <a href="{% url 'home' %}" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+              <a href="{% url 'home' %}" class="list-group-item list-group-item-action-custom py-2 ripple active" aria-current="true">
             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Feed</span>
           </a>
-          <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action py-2 ripple "
+          <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action-custom py-2 ripple "
             aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span></a>
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
+          </a>
+          <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
+        </a>-->
+          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Enter Points</span></a>
 
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
             <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span></a>
 
-          <a href="{% url 'manual' %}" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>Enter Points</span></a>
+          <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>-->
+
 
           <a href="{% url 'history' %}" class="list-group-item list-group-item-action py-2 ripple"><i
+
               class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
 
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -53,25 +61,50 @@
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Settings</span></a>
             
-          {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="list-group-item list-group-item-action py-2 ripple">
+          <a href="{% url 'logout' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Logout</span>
           </a>
-          {% else %}
-          <a href="{% url 'login' %}" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-chart-pie fa-fw me-3"></i><span>Login</span>
-          </a>
-          {% endif %}
 
           <!-- Trigger the modal with a button -->
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button>
+
+          <!--Info PopUp-->
+          <div class="popup" onclick="myFunction()">
+            <svg fill="#317589" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-166.79 -166.79 750.56 750.56" xml:space="preserve" stroke="#317589" stroke-width="0.0041697900000000005">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(72.97132499999998,72.97132499999998), scale(0.65)">
+                <rect x="-166.79" y="-166.79" width="750.56" height="750.56" rx="375.28" fill="#f2f0ed" strokewidth="0"></rect></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="7.505622"></g>
+                <g id="SVGRepo_iconCarrier"> <g> 
+                  <path d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85 c81.369,81.47,213.378,81.551,294.849,0.181C437.293,274.636,437.375,142.626,356.004,61.156z M237.6,340.786 c0,3.217-2.607,5.822-5.822,5.822h-46.576c-3.215,0-5.822-2.605-5.822-5.822V167.885c0-3.217,2.607-5.822,5.822-5.822h46.576 c3.215,0,5.822,2.604,5.822,5.822V340.786z M208.49,137.901c-18.618,0-33.766-15.146-33.766-33.765 c0-18.617,15.147-33.766,33.766-33.766c18.619,0,33.766,15.148,33.766,33.766C242.256,122.755,227.107,137.901,208.49,137.901z" alt = "Info"></path>
+           </g> 
+            </g>
+            </svg>
+           <span class="popuptext" id="myPopup">Welcome to Hitsujikai,
+               your place to both track your spending and compare prices on major Irish
+              supermarkets.</span>
+          </div>
+
+          <div class="audioIcon" id="audioContainer">
+            <audio hidden controls>
+                <source src="{% static 'Intern_project_recording.mp3' %}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <svg fill="#f2f0ed" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-184.24 -184.24 769.00 769.00" xml:space="preserve" stroke="#f2f0ed">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(60.07815000000002,60.07815000000002), scale(0.7)">
+              <rect x="-184.24" y="-184.24" width="769.00" height="769.00" rx="384.5" fill="#317589" strokewidth="0"></rect></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M377.626,44.999l-22.104-22.103c-30.526-30.527-80.022-30.527-110.551,0l-5.781,5.78l132.654,132.653l5.781-5.78 C408.15,125.022,408.154,75.529,377.626,44.999z"></path> 
+                <path d="M193.851,74.02c-19.381,19.379-26.439,46.396-21.215,71.359L3.884,336.616c-5.424,6.145-5.133,15.447,0.662,21.24 l38.117,38.119c5.794,5.795,15.098,6.084,21.242,0.662l191.236-168.752c24.961,5.225,51.982-1.834,71.36-21.215l23.845-23.846 L217.695,50.173L193.851,74.02z"></path>            
+              </g> 
+              </g> 
+             </g>
+            </svg>  
         </div>
-      </div>
     </nav>
     <!-- Sidebar -->
 
     <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-custom fixed-top">
       <!-- Container wrapper -->
       <div class="container-fluid">
         <!-- Toggle button -->
@@ -81,19 +114,52 @@
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand" href="{% url 'home' %}">
-          <img src="/static/Shepherd_Logo.png" height="50" alt="Logo" loading="lazy" />
+        <a class="navbar-brand-custom" href="{% url 'home' %}">
+          <img src="/static/Shepherd_Logo.png" height="60" alt="Logo" loading="lazy" />
         </a>
+
+       
+
         <!-- Search form -->
-        <form action="{% url 'product' %}" method="POST">
+                <!-- <form action="{% url 'product' %}" method="POST">
           {% csrf_token %}
           <input type="text" name="description" placeholder="Search">
-          <input type="submit" name="submit" value="Search">
-          <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-        </form>
+          <button type="submit" name="submit" value="Search">
+          <svg viewBox="0 0 512 512" width="20" title="search">
+            <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+          </svg>
+          </button>
+        </form>    -->
+      
 
+        <!-- <div class="searchBox">
+           <form action="{% url 'product' %}" method="POST">  
+            {% csrf_token %}
+            <input class="searchInput" type="text" name="" placeholder="Search">
+            <button class="searchButton" >
+              <i class="material-icons">
+                <svg viewBox="0 0 512 512" width="25" title="search">
+                  <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                </svg>
+              </i>
+            </button>
+            </form>  
+        </div>  -->
+        <!-- product.html -->
 
-
+<div class="searchBox">
+  <form action="{% url 'product' %}" class="searchform" method="POST">
+    {% csrf_token %}
+    <input type="search" name="search_query" placeholder="Search">
+    <button type="submit">
+      <i class="fa fa-search">
+        <svg viewBox="0 0 512 512" width="25" title="search">
+          <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+        </svg>
+      </i>
+      </button>
+   </form>
+  </div>
 
         <!-- Right links -->
         <ul hidden class="navbar-nav ms-auto d-flex flex-row">
@@ -173,12 +239,6 @@
             </ul>
           </li>
         </ul>
-
-        {% if user.is_authenticated %}
-        <p>
-          Welcome {{ user.first_name }}. You have {{ mypoints|default:'no' }} points.
-        </p>
-        {% endif %}
   
       </div>
       <!-- Container wrapper -->
@@ -215,7 +275,7 @@
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit
         Shopping</button>
 
-      <!-- Modal for daily reward 
+       Modal for daily reward 
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
@@ -244,12 +304,15 @@
     </div>
       -->
 
-    <div class="container">
-      <!-- Modal for daily reward -->
+    <!-- <div class="container">
+      <!-- Trigger the modal with a button 
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color: #c4d700; border:#c4d700;">Daily Reward</button>
+
+      <!-- Modal for daily reward 
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
-          <!-- Modal content-->
+          <!-- Modal content
           <div class="modal-content">
             <form action="{% url 'add_point' %}" method="post">
               {% csrf_token %}
@@ -270,61 +333,32 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
     <div class="text-center container py-5">
       <h2><strong>Weekly Offers</strong></h2>
-      <div class="carousel_container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:120%; overflow-x:hidden;">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
+      <div class="slideshow-container">
 
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-
-            <div class="item active">
-              <img src="/static/Shepherd_Logo.png" alt="" style="width:20%;">
-              <div class="carousel-caption">
-                <h3>Deal 1</h3>
-              </div>
-            </div>
-
-            <div class="item">
-              <img
-                src="https://storage.googleapis.com/images-dun-prd-85c8a53.dun.prd.v8.commerce.mi9cloud.com/product-images/cell/100152379_596.jpg"
-                alt="" style="width:20%;">
-              <div class="carousel-caption">
-                <h3>Deal 2</h3>
-                <p></p>
-              </div>
-            </div>
-
-            <div class="item">
-              <img
-                src="https://digitalcontent.api.tesco.com/v2/media/ghs/5918e54e-bb24-4c31-a577-edbde6068914/0b1a372b-51dc-4d80-be64-011c2f5fe545_1300513662.jpeg?h=540&w=540"
-                alt="New York" style="width:20%;">
-              <div class="carousel-caption">
-                <h3>Deal 3</h3>
-                <p></p>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Left and right controls -->
-          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <div class="mySlides fade">
+          <img src="/static/img/Tesco_Logo.png" style="width:100%; height:200px;">
         </div>
-      </div>
+        
+        <div class="mySlides fade">
+          <img src="/static/img/Dunnes_Logo.png" style="width:100%;  height:200px">
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="/static/img/supervalu_logo.png" style="width:100%;  height:200px">
+        </div>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
+        
 
       <h2><strong>Bestsellers</strong></h2>
 
@@ -620,16 +654,52 @@
     </section>
   </main>
   <!--End of Main layout-->
-</body>
-<!-- <script defer>
-  function changeText(){
-    var before = "{{form.cost_before.value}}";
-    var after = "{{form.cost_after.value}}";
 
-    alert(before);
-    let point = (after-before)*100
-    if (point != NaN) {
-      document.getElementById("getPointsButton").textContent = "Get "+ point +" points";
+  
+<script>
+  let slideIndex = 0;
+  showSlides();
+  
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
     }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
   }
-</script> -->
+
+  function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+        var audioContainer = document.getElementById('audioContainer');
+        var audioElement = audioContainer.querySelector('audio');
+
+        // SVG icon element
+        var svgIcon = audioContainer.querySelector('svg');
+
+        // Add click event listener to the SVG icon
+        svgIcon.addEventListener('click', function () {
+            if (audioElement.paused) {
+                audioElement.play();
+            } else {
+                audioElement.pause();
+            }
+        });
+    });
+  </script>
+  
+  
+</body>
+</html>

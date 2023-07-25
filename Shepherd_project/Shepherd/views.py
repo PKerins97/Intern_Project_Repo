@@ -220,17 +220,20 @@ def add_points(request):
         context = { 'user' : request.user }
     return  render(request, template, context)
 
+
 def search_func(request):
     if request.method == "POST":
-        query_name = request.POST.get('description',None)
-        if query_name:
-            results = Items.objects.filter(description__contains=query_name)
+        search_query = request.POST.get('search_query', None)
+        if search_query:
+            # Perform the search using the 'description__icontains' filter
+            results = Items.objects.filter(description__icontains=search_query)
             for result in results:
-                image_path = 'img/' + result.image.name
-                image_url = default_storage.url(image_path)
-                result.image_url = image_url
-            return render(request, 'product.html', {"results":results})
+               
+                result.image_url = result.image.url  
 
+            return render(request, 'product.html', {"results": results})
+
+    # If no search is performed or the request is not POST, render the template without results
     return render(request, 'product.html')
 
 def congratulate(request):
@@ -262,6 +265,7 @@ def connect(request):
     
     return redirect(redirect_to)
 
+
 def history(request):
     template = 'history.html'
     orders = Purchase.objects.filter(user=request.user)
@@ -273,3 +277,8 @@ def history(request):
         'my_orders': orders
     }
     return render(request, template, context)
+
+def audio_view(request):
+    audio_url = "static/Intern_project_recording.mp3"  # Replace with the actual URL of your audio file
+    context = {'audio_url': audio_url}
+    return render(request, 'home.html', context)
