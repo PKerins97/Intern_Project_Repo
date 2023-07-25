@@ -16,9 +16,8 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('add-point/', views.add_points, name='add_point'),
-    path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('populate/', views.populate, name='populate'),
-     path('product/', views.search_func, name='product'),
+    path('product/', views.search_func, name='product'),
     path('map/', views.manualPoints, name='manual'),
     path('ocr/mindee/', views.mindeeOCR, name='mindee'),
     path('password-reset/', PasswordResetView.as_view(template_name='registration/password_reset.html'),name='password-reset'),
@@ -26,6 +25,9 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'),name='password_reset_confirm'),
     path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),name='password_reset_complete'),
     
+    path('history/', views.history, name='history'),
+    
+    path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('leaderboard/connect/', views.connect, name='connect'),
     path('leaderboard/congratulate/', views.congratulate, name='congratulate')
     
