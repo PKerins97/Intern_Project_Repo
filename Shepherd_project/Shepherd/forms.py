@@ -20,8 +20,18 @@ class LoginForm(forms.Form):
     remember_me = forms.BooleanField(required=False)
 
 class ManualPointsForm(forms.Form):
+    TESCO = "Tesco"
+    DUNNES = "Dunnes"
+    SUPERVALU = "Supervalu"
+    shops = (
+        (TESCO, "Tesco"),
+        (DUNNES, "Dunnes"),
+        (SUPERVALU, "SuperValu")
+    )
     cost_before = forms.DecimalField(decimal_places=2, min_value=0, widget=forms.NumberInput)
     cost_after = forms.DecimalField(decimal_places=2, widget=forms.NumberInput)
+    shop = forms.ChoiceField(choices=shops)
+    description = forms.CharField()
     
     def is_valid(self):
         return self.data['cost_after'] <= self.data['cost_before']
