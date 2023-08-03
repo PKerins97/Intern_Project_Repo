@@ -33,18 +33,15 @@
             <a href="{% url 'leaderboard' %}" class="list-group-item list-group-item-action-custom py-2 ripple active "
               aria-current="true">
               <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
-            </a>
-            <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-            <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
-          </a>-->
+            </a>              
             <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
               <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Enter Points</span></a>
   
             <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
               <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span></a>
   
-            <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>-->
+            <a href="{% url 'history' %}" class="list-group-item list-group-item-action py-2-custom ripple"><i
+                class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
             <a href="{% url 'logout' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
  
           <!-- Trigger the modal with a button -->
@@ -189,6 +186,11 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
+          <div class="infotext-box">
+            <span class="close-infobutton">&times;</span>
+            <p class = "infoText">Who doesn't love a good bit of competition? See how your savings stack up compared to your
+              friends below! Please visit the add points page to input your savings.</p>
+          </div>
             <h1>Top Gainers</h1>
             <br>
             <br>
@@ -348,6 +350,13 @@
           var popup = document.getElementById("myPopup");
           popup.classList.toggle("show");
         }
+
+        const closeButton = document.querySelector('.close-infobutton');
+        const textBox = document.querySelector('.infotext-box');
+    
+        closeButton.addEventListener('click', () => {
+          textBox.style.display = 'none';
+        });
       </script>
 </body>
 

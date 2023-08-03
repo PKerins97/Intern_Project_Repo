@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/berlin-sans-fb-demi');
+
 html{
   max-width:100%;
   overflow-x: hidden;
@@ -262,4 +264,19 @@ body {
 
   .productContaintars{
     padding-bottom:20px;
+  }
+  .infotext-box {
+    position: relative;
+    padding: 10px;
+    background-color: #C4d700;
+  }
+  .close-infobutton {
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+  .infoText{
+    padding-left:200px;
+    font-family: 'Berlin Sans FB Demi', sans-serif;
+                                                
   }
