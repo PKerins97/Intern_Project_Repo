@@ -58,14 +58,11 @@ def login(request):
             user = authenticate(request, username = username, password = password)
             if user:
                 djlogin(request, user)
-                
-                # return daily_login(request)
-            if not remember_me:
-                request.session.set_expiry(0)
-                return redirect ('home')
-            else:
-                request.session.set_expiry(1209600)
-            return redirect('login')
+                if not remember_me:
+                    request.session.set_expiry(0)
+                else:
+                    request.session.set_expiry(1209600)
+                return redirect('home')
         return render(request, 'login.html',{'form' : form})
     
 def logout(request):
@@ -129,8 +126,8 @@ def manualPoints(request):
         return render(request, template, content)
     else:
         form = ManualPointsForm(request.POST)
+        message = ""
         if (form.is_valid()):
-            print("form is valid")
             try:
                 cashBefore = float(form['cost_before'].data)
                 cashAfter = float(form['cost_after'].data)
@@ -150,7 +147,9 @@ def manualPoints(request):
                 shop = shop
             )
             purchase.save()
-            return redirect('home')
+            
+            # Create success message
+            return redirect('manual')
         else:
             return redirect('manual')
     
