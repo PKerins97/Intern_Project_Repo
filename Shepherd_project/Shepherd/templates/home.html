@@ -38,22 +38,14 @@
             aria-current="true">
             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Leaderboard</span>
           </a>
-          <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span>
-        </a>-->
           <a href="{% url 'manual' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
             <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Enter Points</span></a>
 
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple ">
             <i class="fas fa-chart-area fa-fw me-3"></i><span>Share offer</span></a>
 
-          <!--<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>-->
-
-
-          <a href="{% url 'history' %}" class="list-group-item list-group-item-action py-2 ripple"><i
-
-              class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
+          <a href="{% url 'history' %}" class="list-group-item list-group-item-action-custom py-2 ripple">
+            <i class="fas fa-lock fa-fw me-3"></i><span>My history</span></a>
 
           <a hidden href="#" class="list-group-item list-group-item-action py-2 ripple"><i
               class="fas fa-chart-line fa-fw me-3"></i><span>Account</span></a>
@@ -89,16 +81,13 @@
                 <source src="{% static 'Intern_project_recording.mp3' %}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <svg fill="#f2f0ed" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-184.24 -184.24 769.00 769.00" xml:space="preserve" stroke="#f2f0ed">
-              <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(60.07815000000002,60.07815000000002), scale(0.7)">
-              <rect x="-184.24" y="-184.24" width="769.00" height="769.00" rx="384.5" fill="#317589" strokewidth="0"></rect></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M377.626,44.999l-22.104-22.103c-30.526-30.527-80.022-30.527-110.551,0l-5.781,5.78l132.654,132.653l5.781-5.78 C408.15,125.022,408.154,75.529,377.626,44.999z"></path> 
-                <path d="M193.851,74.02c-19.381,19.379-26.439,46.396-21.215,71.359L3.884,336.616c-5.424,6.145-5.133,15.447,0.662,21.24 l38.117,38.119c5.794,5.795,15.098,6.084,21.242,0.662l191.236-168.752c24.961,5.225,51.982-1.834,71.36-21.215l23.845-23.846 L217.695,50.173L193.851,74.02z"></path>            
-              </g> 
-              </g> 
-             </g>
-            </svg>  
+            <svg width="64px" height="64px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f2f0ed" stroke-width="0.00024000000000000003">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+                <rect x="0" y="0" width="24.00" height="24.00" rx="12" fill="#317589" strokewidth="0">
+                </rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
+                <g id="SVGRepo_iconCarrier"> 
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.0002 9C13.1048 9 14.0002 8.10457 14.0002 7C14.0002 5.89543 13.1048 5 12.0002 5C10.8956 5 10.0002 5.89543 10.0002 7C10.0002 8.10457 10.8956 9 12.0002 9ZM6.29284 9.30945C5.91154 9.14785 5.4714 9.3259 5.30971 9.7072C5.148 10.0885 5.32605 10.5288 5.70739 10.6905L5.70871 10.691L5.71133 10.6921L5.72038 10.696L5.75338 10.7097C5.78186 10.7215 5.82313 10.7385 5.87608 10.7599C5.98193 10.8026 6.13459 10.8631 6.32498 10.9355C6.70531 11.08 7.23854 11.2726 7.85162 11.4654C8.84049 11.7765 10.088 12.1049 11.2502 12.2131V13.4522C11.2502 13.8837 11.1262 14.306 10.8928 14.6689L8.36931 18.5944C8.14532 18.9429 8.2462 19.4069 8.59463 19.6309C8.94305 19.8549 9.40709 19.754 9.63108 19.4056L12.0002 15.7203L14.3693 19.4056C14.5933 19.754 15.0573 19.8549 15.4058 19.6309C15.7542 19.4069 15.8551 18.9429 15.6311 18.5944L13.1075 14.6689C12.8742 14.306 12.7502 13.8837 12.7502 13.4522V12.2131C13.9124 12.1049 15.1599 11.7765 16.1488 11.4654C16.7619 11.2726 17.2951 11.08 17.6754 10.9355C17.8658 10.8631 18.0185 10.8026 18.1243 10.7599C18.1773 10.7385 18.2185 10.7215 18.247 10.7097L18.28 10.696L18.2891 10.6921L18.2917 10.691L18.2928 10.6906C18.6741 10.5289 18.8524 10.0885 18.6907 9.7072C18.529 9.3259 18.0887 9.1479 17.7074 9.30952L17.6999 9.31266L17.6727 9.32399C17.6482 9.33416 17.6111 9.34942 17.5625 9.36905C17.4653 9.40832 17.3223 9.465 17.1426 9.53328C16.7828 9.67002 16.2777 9.85241 15.6987 10.0346C14.5205 10.4052 13.1114 10.75 12.0002 10.75C10.8889 10.75 9.47991 10.4052 8.30172 10.0346C7.72264 9.85241 7.21763 9.67002 6.85776 9.53328C6.67806 9.465 6.53512 9.40832 6.43791 9.36905C6.38932 9.34942 6.3522 9.33416 6.32767 9.32399L6.30046 9.31266L6.2942 9.31003L6.29284 9.30945Z" fill="#f2f0ed"></path>
+             </g></svg> 
         </div>
     </nav>
     <!-- Sidebar -->
@@ -121,7 +110,7 @@
 <div class="searchBox">
   <form action="{% url 'product' %}" class="searchform" method="POST">
     {% csrf_token %}
-    <input type="search" name="search_query" placeholder="Search">
+    <input type="search" name="search_query" placeholder="Search Products.....">
     <button  type="submit" style = "border:0;">
       <i class="fa fa-search">
         <svg viewBox="0 0 512 512" width="25" title="search">
@@ -220,7 +209,12 @@
 
   <!--Main layout-->
   <main style="margin-top: 58px;">
-
+  
+    <div class="infotext-box">
+      <span class="close-infobutton">&times;</span>
+      <p class = "infoText">Welcome to Hitsujikai, your place to both track your spending and compare prices on major Irish
+        supermarkets.</p>
+    </div>
     {% if has_messages %}
     {% for message in messages %}
     <div class="toast show position-absolute" style="right: 0;">
@@ -240,98 +234,43 @@
     </div>
     {% endfor %}
     {% endif %}
-    <!-- 
-    <div class="container">
-     Trigger the modal with a button 
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit
-        Shopping</button>
 
-       Modal for daily reward 
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-           Modal content
-          <div class="modal-content">
-            <form action="{% url 'manual' %}" method="post">
-              {% csrf_token %}
-              <div class="modal-header">
-                <h4 class="modal-title">Add points manually</h4>
-                <
-              </div>
-              <div class="modal-body">
-                {% csrf_token %}
-                {{ form.as_p }}
-              </div>
-              <div class="hidden" id="cost_before">{{form.cost_before.value}}</div>
-              <div class="hidden" id="cost_after">{{form.cost_after.value}}</div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-default" action="{% url 'manual' %}" id="getPointsButton">Get points</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    
+    {% if error_message %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      <strong>{{ error_message }}</strong>
     </div>
-      -->
-
-    <!-- <div class="container">
-      <!-- Trigger the modal with a button 
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color: #c4d700; border:#c4d700;">Daily Reward</button>
-
-      <!-- Modal for daily reward 
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content
-          <div class="modal-content">
-            <form action="{% url 'add_point' %}" method="post">
-              {% csrf_token %}
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Login Reward</h4>
-              </div>
-              <div class="modal-body">
-                <p>Claim your Reward </p>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-default" action="{% url 'add_point' %}">Claim Reward</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </form>
+    {% endif %}
+  </div>
+  <div class="container">  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <form action="{% url 'add_point' %}" method="post">
+            {% csrf_token %}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login Reward</h4>
           </div>
-
+          <div class="modal-body">
+            <p>Claim your Reward </p>             
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default" action="{% url 'add_point' %}" >Claim Reward</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
         </div>
+        
       </div>
+    </div> 
+    <div class="text-center container py-5">      
 
-    </div> -->
-    <div class="text-center container py-5">
-      <h2><strong>Weekly Offers</strong></h2>
-      <div class="slideshow-container">
-
-        <div class="mySlides fade">
-          <img src="/static/img/Tesco_Logo.png" style="width:100%; height:200px;">
-        </div>
-        
-        <div class="mySlides fade">
-          <img src="/static/img/Dunnes_Logo.png" style="width:100%;  height:200px">
-        </div>
-        
-        <div class="mySlides fade">
-          <img src="/static/img/supervalu_logo.png" style="width:100%;  height:200px">
-        </div>
-        
-        </div>
-        <br>
-        
-        <div style="text-align:center">
-          <span class="dot"></span> 
-          <span class="dot"></span> 
-          <span class="dot"></span> 
-        </div>
-        
-
-      <h2><strong>Bestsellers</strong></h2>
+      <h1><strong>Weekly Offers</strong></h1>
 
       <div class="row">
         <h4><strong>Tesco</strong></h4>
@@ -622,6 +561,29 @@
         </div>
       </div>
     </div>
+    
+      <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <img src="/static/img/Tesco_Logo.png" style="width:100%; height:200px;">
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="/static/img/Dunnes_Logo.png" style="width:100%;  height:200px">
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="/static/img/supervalu_logo.png" style="width:100%;  height:200px">
+        </div>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
     </section>
   </main>
   <!--End of Main layout-->
@@ -669,6 +631,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    const closeButton = document.querySelector('.close-infobutton');
+    const textBox = document.querySelector('.infotext-box');
+
+    closeButton.addEventListener('click', () => {
+      textBox.style.display = 'none';
+    });
+
   </script>
   
   
