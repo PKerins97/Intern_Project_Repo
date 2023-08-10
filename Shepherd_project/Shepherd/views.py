@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as djlogin
+from django.contrib.auth import authenticate,login as djlogin
 from django.contrib.auth import logout as djlogout
+from django.contrib.auth.views import LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
@@ -9,8 +10,8 @@ from django.utils import timezone
 import random
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.tokens import default_token_generator
-from django.core.files.storage import default_storage
+from django.contrib.sessions.models import Session
+
 
 
 from .forms import *
@@ -19,10 +20,12 @@ from .models import *
 
 
 # Create your views here.
+@login_required
 def home(request):
     template = 'home.html'
     context = {}
     if (request.user.is_authenticated):
+
         context = {
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
@@ -41,6 +44,7 @@ def home(request):
         context = { 'user' : request.user }
     return  render(request, template, context)
 
+
 def login(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -55,23 +59,35 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             remember_me = form.cleaned_data['remember_me']
-            user = authenticate(request, username = username, password = password)
-            if user:
+            login_error = "Invaild Username or Password! Try again!"
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
                 djlogin(request, user)
+            else:
+                if request.method =='POST':
+                    form = LoginForm()
+                    template = 'login.html'
+                    login_error = "Invaild Username or Password! Please try again!"
+                    # context={
+                    #     'login_error':login_error
+                    # }
+                return render(request,template,{'form': form})
                 
-                # return daily_login(request)
             if not remember_me:
                 request.session.set_expiry(0)
-                return redirect ('home')
+                return redirect('login')
             else:
                 request.session.set_expiry(1209600)
-            return redirect('login')
-        return render(request, 'login.html',{'form' : form})
+
+            
+        return render(request, 'login.html', {'form': form})
     
 def logout(request):
-    djlogout(request)
-    messages.success(request, f'you have been logged out.')
-    return redirect('login')
+     djlogout(request)
+     return redirect('login')
+   
+
+            
 
 def register(request):
     if request.method =='GET':

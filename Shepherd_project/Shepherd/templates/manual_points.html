@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/static/mapstylesheet.css"> 
+<link rel="stylesheet" href="/static/homestylesheet.css"> 
 </head>
 
 
@@ -69,7 +69,7 @@
           </a>
 
           <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button>
+          {% comment %} <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Daily Reward</button> {% endcomment %}
 
           <!--Info PopUp-->
           <div class="popup" onclick="myFunction()">
@@ -85,9 +85,9 @@
            <span class="popuptext" id="myPopup">Use the below to add points towards being the best saver out of your friends!</span>
           </div>
 
-          <div class="audioIcon" id="audioContainer">
+           <div class="audioIcon" id="audioContainer">
             <audio hidden controls>
-                <source src="{% static 'Intern_project_recording.mp3' %}" type="audio/mpeg">
+                <source src="{% static 'Add points.mp3' %}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
             <svg fill="#f2f0ed" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="-184.24 -184.24 769.00 769.00" xml:space="preserve" stroke="#f2f0ed">
@@ -99,7 +99,7 @@
               </g> 
               </g> 
              </g>
-            </svg>  
+            </svg>   
         </div>
     </nav>
   <!-- Sidebar -->
@@ -221,16 +221,46 @@
   <!--Main layout-->
   <main style="margin-top: 58px;">
     <div class="container" class="entrytext">
-      <form method="POST" novalidate>
-        {% csrf_token %}
-        <h2>Add points</h2>
-        {{ form.as_p }}
-        <button class="btn btn-default" type="submit">Submit</button>
-      </form>
-    </div>
-    
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Enter Offer</button>
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <form method="POST" novalidate>
+              {% csrf_token %}
+              <h2>Add points</h2>
+              {{ form.as_p }}
+              <button class="btn btn-default" type="submit">Submit</button>
+            </div>
+          </form>
+          </div>
+          
+        </div>
+      </div>
   </main>
   <!--End of Main layout-->
 </body>
+<script>
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+document.addEventListener('DOMContentLoaded', function () {
+  var audioContainer = document.getElementById('audioContainer');
+  var audioElement = audioContainer.querySelector('audio');
 
+  // SVG icon element
+  var svgIcon = audioContainer.querySelector('svg');
+
+  // Add click event listener to the SVG icon
+  svgIcon.addEventListener('click', function () {
+      if (audioElement.paused) {
+          audioElement.play();
+      } else {
+          audioElement.pause();
+      }
+  });
+});
+</script>
 </html>
