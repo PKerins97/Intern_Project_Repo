@@ -154,7 +154,7 @@ body {
       border: 4px solid white;
       padding: 5px;
   }
-  input{
+  .searchinput{
       position: absolute;
       top: 0;
       left: 0;
@@ -280,3 +280,4 @@ body {
     font-family: 'Berlin Sans FB Demi', sans-serif;
                                                 
   }
+
