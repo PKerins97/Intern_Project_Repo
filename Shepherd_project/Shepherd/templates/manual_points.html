@@ -221,23 +221,13 @@
   <!--Main layout-->
   <main style="margin-top: 58px;">
     <div class="container" class="entrytext">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Enter Offer</button>
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-        
-          <!-- Modal content-->
-          <div class="modal-content">
-            <form method="POST" novalidate>
-              {% csrf_token %}
-              <h2>Add points</h2>
-              {{ form.as_p }}
-              <button class="btn btn-default" type="submit">Submit</button>
-            </div>
-          </form>
-          </div>
-          
-        </div>
-      </div>
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <h2>Add points</h2>
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    </div>
   </main>
   <!--End of Main layout-->
 </body>
