@@ -36,11 +36,11 @@ body {
   }
   .sidebar .active {
     border-radius: 5px;
-    background-color: #C4d700;
+    background-color: #317589;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   }
   .sidebar .hover {
-    border-radius: 5px;
+    border-radius: 20px;
   }
   .sidebar-sticky {
     position: relative;
