@@ -31,18 +31,21 @@ def home(request):
             'mypoints': Points.objects.get(user_id=request.user.id).points,
             'form': ManualPointsForm()
             }
+        context = get_messages(request, context)
+    else:
+        context = { 'user' : request.user }
+    return  render(request, template, context)
+
+def get_messages(request, context):
+    if (request.user.is_authenticated):
         messages = Message.objects.filter(receiver=request.user).filter(consumed=False)
-        print(messages)
         if (messages==None):
             context['has_messages'] = False
         else:
             context['has_messages'] = True
             context['messages'] = list(messages)
             messages.update(consumed=True)
-        
-    else:
-        context = { 'user' : request.user }
-    return  render(request, template, context)
+    return context
 
 
 def login(request):
@@ -85,9 +88,6 @@ def login(request):
 def logout(request):
      djlogout(request)
      return redirect('login')
-   
-
-            
 
 def register(request):
     if request.method =='GET':
@@ -108,16 +108,16 @@ def register(request):
    
 def leaderboard(request):
     template = 'leaderboard.html'
-    topUsers = Points.objects.order_by('-points')[:10]
+    topUsers = Points.objects.order_by('-points')
     messages = Message.objects.filter(message="-connect")
+    context = {}
     if (request.user.is_authenticated):
         for user in topUsers:
             user.user.i_sent = messages.filter(sender=request.user, receiver=user.user).exists()
             user.user.sent_me = messages.filter(sender=user.user, receiver=request.user).exists()
             
-    context = {
-        'champs': topUsers
-    }
+    context['champs'] = list(topUsers)
+    context = get_messages(request, context)
     if (request.user.is_authenticated):
         context['current_user'] = request.user
         context['mypoints'] = Points.objects.get(user=request.user).points
@@ -142,11 +142,13 @@ def manualPoints(request):
         content = {
             'form': ManualPointsForm()
         }
+        content = get_messages(request, content)
         return render(request, template, content)
     else:
         form = ManualPointsForm(request.POST)
+        template = 'manual_points.html'
+        context = {}
         if (form.is_valid()):
-            print("form is valid")
             try:
                 cashBefore = float(form['cost_before'].data)
                 cashAfter = float(form['cost_after'].data)
@@ -168,9 +170,15 @@ def manualPoints(request):
                 shop = shop
             )
             purchase.save()
-            return redirect('home')
+            
+            # Create success message
+            context['message'] = 'success'
         else:
-            return redirect('manual')
+            # Create failure message
+            context['message'] = 'fail'
+            
+        context['form'] = ManualPointsForm()
+        return render(request, template, context)
 
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
@@ -262,6 +270,7 @@ def history(request):
         'mypoints': Points.objects.get(user_id=request.user.id).points,
         'my_orders': orders
     }
+    context = get_messages(request, context)
     return render(request, template, context)
 
 def audio_view(request):

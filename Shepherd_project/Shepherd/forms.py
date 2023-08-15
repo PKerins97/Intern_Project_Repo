@@ -34,7 +34,7 @@ class ManualPointsForm(forms.Form):
     description = forms.CharField()
     
     def is_valid(self):
-        return self.data['cost_after'] <= self.data['cost_before']
+        return float(self.data['cost_after']) <= float(self.data['cost_before'])
 
 class FileEntryForm(forms.Form):
     file = forms.FileField(allow_empty_file=False, required=True)

@@ -211,10 +211,10 @@
   <main style="margin-top: 58px;">
   <div class = "userPoints">
     {% if user.is_authenticated %}
-                <p>
-                  {{user.first_name}} = {{ mypoints|default:'no' }} points.
-                </p>
-                {% endif %} 
+    <p>
+      {{user.first_name}} = {{ mypoints|default:'no' }} points.
+    </p>
+    {% endif %}
   </div>
     <div class="infotext-box">
       <span class="close-infobutton">&times;</span>
