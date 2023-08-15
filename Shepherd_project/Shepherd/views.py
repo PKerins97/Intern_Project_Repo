@@ -85,9 +85,6 @@ def login(request):
 def logout(request):
      djlogout(request)
      return redirect('login')
-   
-
-            
 
 def register(request):
     if request.method =='GET':
@@ -145,7 +142,8 @@ def manualPoints(request):
         return render(request, template, content)
     else:
         form = ManualPointsForm(request.POST)
-        message = ""
+        template = 'manual_points.html'
+        context = {}
         if (form.is_valid()):
             try:
                 cashBefore = float(form['cost_before'].data)
@@ -170,9 +168,13 @@ def manualPoints(request):
             purchase.save()
             
             # Create success message
-            return redirect('manual')
+            context['message'] = 'success'
         else:
-            return redirect('manual')
+            # Create failure message
+            context['message'] = 'fail'
+            
+        context['form'] = ManualPointsForm()
+        return render(request, template, context)
 
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:

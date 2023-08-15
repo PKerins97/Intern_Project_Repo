@@ -220,10 +220,16 @@
   <!--Main layout-->
   <main style="margin-top: 58px;">
     <div class="container" class="entrytext">
-      <!-- <div class="alert alert-success" role="alert">
+      {% if message == "success" %}
+      <div class="alert alert-success" role="alert">
         Success! See
         <a href="{% url 'history' %}" class="alert-link">your points history</a>.
-      </div> -->
+      </div>
+      {% elif message == "fail" %}
+      <div class="alert alert-danger" role="alert">
+        Price with discount should be less than price without.
+      </div>
+      {% endif %}
       <form method="POST" novalidate>
         {% csrf_token %}
         <h2>Add points</h2>
