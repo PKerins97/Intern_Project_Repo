@@ -1,19 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <head>
-<style>
-    a:link, a:visited {
-      color: black;
-      padding: 14px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    a:hover, a:active {
-      background-color: #C4D700;
-    }
-  </style>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,6 +29,7 @@
                 {% endfor %}
         <a href="{% url 'login' %}"> Login</a>
         <input id = "login_button" type="submit" value="Register"/>
+      </form>
     </form>
     </div>
 </body>

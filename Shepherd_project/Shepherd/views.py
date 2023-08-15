@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as djlogin
+from django.contrib.auth import authenticate,login as djlogin
 from django.contrib.auth import logout as djlogout
+from django.contrib.auth.views import LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
@@ -9,8 +10,8 @@ from django.utils import timezone
 import random
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.tokens import default_token_generator
-from django.core.files.storage import default_storage
+from django.contrib.sessions.models import Session
+
 
 
 from .forms import *
@@ -19,10 +20,12 @@ from .models import *
 
 
 # Create your views here.
+@login_required
 def home(request):
     template = 'home.html'
     context = {}
     if (request.user.is_authenticated):
+
         context = {
             'user' : request.user,
             'mypoints': Points.objects.get(user_id=request.user.id).points,
@@ -41,6 +44,7 @@ def home(request):
         context = { 'user' : request.user }
     return  render(request, template, context)
 
+
 def login(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -55,20 +59,35 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             remember_me = form.cleaned_data['remember_me']
-            user = authenticate(request, username = username, password = password)
-            if user:
+            login_error = "Invaild Username or Password! Try again!"
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
                 djlogin(request, user)
-                if not remember_me:
-                    request.session.set_expiry(0)
-                else:
-                    request.session.set_expiry(1209600)
-                return redirect('home')
-        return render(request, 'login.html',{'form' : form})
+            else:
+                if request.method =='POST':
+                    form = LoginForm()
+                    template = 'login.html'
+                    login_error = "Invaild Username or Password! Please try again!"
+                    # context={
+                    #     'login_error':login_error
+                    # }
+                return render(request,template,{'form': form})
+                
+            if not remember_me:
+                request.session.set_expiry(0)
+                return redirect('login')
+            else:
+                request.session.set_expiry(1209600)
+
+            
+        return render(request, 'login.html', {'form': form})
     
 def logout(request):
-    djlogout(request)
-    messages.success(request, f'you have been logged out.')
-    return redirect('login')
+     djlogout(request)
+     return redirect('login')
+   
+
+            
 
 def register(request):
     if request.method =='GET':
@@ -134,6 +153,8 @@ def manualPoints(request):
             except ValueError:
                 return redirect('manual')
             description = form['description'].data
+            cap_description = description.capitalize()
+            display_description = cap_description
             shop = form['shop'].data
             #TODO: decide which points system works
             p = Points.objects.get(user=request.user)
@@ -143,7 +164,7 @@ def manualPoints(request):
                 user = request.user,
                 money_before = cashBefore,
                 money_after = cashAfter,
-                description = description,
+                description = display_description,
                 shop = shop
             )
             purchase.save()
@@ -152,38 +173,6 @@ def manualPoints(request):
             return redirect('manual')
         else:
             return redirect('manual')
-    
-def mindeeOCR(request):
-    
-    if request.method == 'GET':
-        template = 'mindee_ocr.html'
-        context = {
-            'form': FileEntryForm()
-        }
-        return render(request, template, context)
-    else:
-        form = request.POST.get('file', '')
-        print(form)
-        form = FileEntryForm(request.POST, request.FILES)
-        if form.is_valid():
-            print(request.FILES["file"])
-            return redirect('home')
-        return redirect('leaderboard')
-        # Init a new client
-        # mindee_client = Client(api_key="229a21e30a51c7788f34d3b729a7775c")
-
-        # Load a file from disk
-        # input_doc = mindee_client.doc_from_path("/path/to/the/file.ext")
-
-        # Parse the document as an invoice by passing the appropriate type
-        # api_response = input_doc.parse(documents.TypeReceiptV5)
-
-        # Print a brief summary of the parsed data
-        # f = File('log.txt')
-        # print(api_response.document)
-        # print(api_response.document, file=f)
-        # template = ''
-
 
 def UserLoggedIn(request):
     if request.user.is_authenticated == True:
