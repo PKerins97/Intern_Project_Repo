@@ -44,7 +44,7 @@ def get_messages(request, context):
         else:
             context['has_messages'] = True
             context['messages'] = list(messages)
-            # messages.update(consumed=True)
+            messages.update(consumed=True)
     return context
 
 
