@@ -219,6 +219,26 @@
 
   <!--Main layout-->
   <main style="margin-top: 58px;">
+
+    {% if has_messages %}
+    {% for message in messages %}
+    <div class="toast show position-absolute" style="right: 0;">
+      <div class="toast-header d-flex align-items-center">
+        <div class="mx-auto">You have a message</div>
+        <button type="button" class="btn-close m ml-auto closeToast" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body">
+        {% if message.message == "-congrats" %}
+        <p>{{message.sender.username}} sends his congratulations</p>
+        {% elif message.message == "-connect" %}
+        <p>{{message.sender.username}} wants to connect</p>
+        <a href="connect/?receiver={{message.sender}}&src=home"><button class="btn btn-primary btn-sm">Accept</button></a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
     <div class="container" class="entrytext">
       {% if message == "success" %}
       <div class="alert alert-success" role="alert">
