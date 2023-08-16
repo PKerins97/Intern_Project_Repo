@@ -80,7 +80,7 @@
         <div class="searchBox">
             <form action="{% url 'product' %}" class="searchform" method="POST">
               {% csrf_token %}
-              <input type="search" name="search_query" placeholder="Search">
+              <input class = "searchinput" type="search" name="search_query" placeholder="Search Product...">
               <button type="submit"  style = "border:0;">
                 <i class="fa fa-search">
                   <svg viewBox="0 0 512 512" width="25" title="search">
@@ -182,9 +182,9 @@
       <p>{{ result.store }}</p>
       <p>{{ result.description }}</p>
       <p>€{{ result.price }}</p>
-      <img src="{% static 'img/' %}{{ result.image.url }}" width = "150" height = "150">
+      <img src="{% static 'img' %}{{ result.image.url }}" width = "150" height = "150">
       {% empty %}
-      <p> No product found</p>
+      <h3> No product found. Please try another product</h3>
   {% endfor %}
         </div>
     </div>

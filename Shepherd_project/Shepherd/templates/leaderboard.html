@@ -102,7 +102,7 @@
         <div class="searchBox">
           <form action="{% url 'product' %}" class="searchform" method="POST">
             {% csrf_token %}
-            <input type="search" name="search_query" placeholder="Search">
+            <input class = "searchinput"  type="search" name="search_query" placeholder="Search Product...">
             <button type="submit"  style = "border:0;">
               <i class="fa fa-search">
                 <svg viewBox="0 0 512 512" width="25" title="search">
@@ -219,11 +219,11 @@
                         <div class="leaderboard-card__body">
                             <div class="text-center">
                                 <img src="/static/img/profile-default.jpg" class="circle-img mb-2" alt="User Img">
-                                <h5 class="mb-0">{{ champs.1.user.last_name }} {{ champs.1.user.first_name}}
+                                <h5 class="mb-0">{{ champs.1.user.first_name}} {{ champs.1.user.last_name }} 
                                 </h5>
                                 <p class="text-muted mb-0">@{{ champs.1.user.username }}</p>
                                 <hr>
-                                <div class="d-flex justify-content-between align-items-center">
+                                {% comment %} <div class="d-flex justify-content-between align-items-center">
                                     <span>
                                         {% if user.user.sent_me and user.user.i_sent %}
                                         <button class="btn btn-secondary btn-sm">Connected</button>
@@ -236,7 +236,7 @@
                                         {% endif %}
                                     </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                                 </h5>
                                 <p class="text-muted mb-0">@{{ champs.0.user.username }}</p>
                                 <hr>
-                                <div class="d-flex justify-content-between align-items-center">
+                                {% comment %} <div class="d-flex justify-content-between align-items-center">
                                     <span>
                                         {% if user.user.sent_me and user.user.i_sent %}
                                         <button class="btn btn-secondary btn-sm">Connected</button>
@@ -266,7 +266,7 @@
                                         {% endif %}
                                     </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -283,7 +283,7 @@
                                 </h5>
                                 <p class="text-muted mb-0">@{{ champs.2.user.username }}</p>
                                 <hr>
-                                <div class="d-flex justify-content-between align-items-center">
+                                {% comment %} <div class="d-flex justify-content-between align-items-center">
                                     <span>
                                             {% if user.user.sent_me and user.user.i_sent %}
                                             <button class="btn btn-secondary btn-sm">Connected</button>
@@ -296,7 +296,7 @@
                                             {% endif %}
                                     </span>
                                     <button class="btn btn-outline-success btn-sm">Congratulate</button>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
