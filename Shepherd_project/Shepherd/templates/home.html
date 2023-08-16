@@ -93,7 +93,7 @@
         <div class = "userPoints">
           {% if user.is_authenticated %}
                       <p>
-                        {{user.first_name}}'s points = {{ mypoints|default:'no' }}.
+                        {{user.first_name}}'s points = {{ mypoints|default:'0' }}.
                       </p>
                       {% endif %} 
         </div>

@@ -29,7 +29,7 @@
             {{ form.as_p }}
             <a href="javascript:{}" onclick="document.getElementById('login_form').submit();">Login</a>
           </form>
-          <div><a  href="{% url 'password-reset' %}">Forgot your password?</a></div>
+          {% comment %} <div><a  href="{% url 'password-reset' %}">Forgot your password?</a></div> {% endcomment %}
           <span><a  href="{% url 'register' %}">Register</a></span>
         </div>
         
